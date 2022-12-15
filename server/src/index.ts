@@ -26,9 +26,7 @@ app.post("/decks" , async(req: Request, res: Response) => {
 app.listen(3000);
 
 mongoose
-    .connect(
-        `mongodb+srv://admin:${process.env.DB_Password}@cluster0.titas9x.mongodb.net/?retryWrites=true&w=majority`
-    ).then(() => {
+    .connect(process.env.MONGO_URL!).then(() => {
         console.log(`listing on port ${PORT}`)
         app.listen(PORT)
     })
