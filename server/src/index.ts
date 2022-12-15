@@ -17,7 +17,7 @@ app.use(express.json())
 
 app.post("/decks" , async(req: Request, res: Response) => {
     const newDeck = new Deck({
-        title: "My Awesome Flashcard Deck"
+        title: req.body.title
     })
     const createdDeck = await newDeck.save()
     res.json(createdDeck)
