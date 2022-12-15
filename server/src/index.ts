@@ -10,8 +10,16 @@ const PORT = 3001;
 
 const app = express()
 
-app.get("/", (req: Request ,res: Response) => {
-    res.send("hello world")
+// app.get("/", (req: Request ,res: Response) => {
+//     res.send("hello world")
+// })
+
+app.post("/decks" , async(req: Request, res: Response) => {
+    const newDeck = new Deck({
+        title: "My Awesome Flashcard Deck"
+    })
+    const createdDeck = await newDeck.save()
+    res.json(createdDeck)
 })
 
 app.listen(3000);
