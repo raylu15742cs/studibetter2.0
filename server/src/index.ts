@@ -9,6 +9,7 @@ import Deck from "./models/Deck"
 const PORT = 3001;
 
 const app = express()
+app.use(express.json())
 
 // app.get("/", (req: Request ,res: Response) => {
 //     res.send("hello world")
