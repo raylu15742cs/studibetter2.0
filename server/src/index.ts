@@ -12,7 +12,7 @@ const PORT = 5003;
 const app = express()
 app.use(
     cors({
-        origin: "8"
+        origin: "*"
     })
 )
 app.use(express.json())
