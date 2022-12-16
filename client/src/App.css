@@ -13,31 +13,22 @@
 }
 
 .decks {
-  display: grid;
-  width: 700px;
-  margin: 0 auto;
-  grid-gap: 10px;
-  grid-template-columns: repeat(5,1fr);
+  display: flex;
+  justify-content: center;
+  gap: 10px;
   color: black;
 }
 
 .decks li {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100px;
+  width: 200px;
   border: 1px solid white;
   background: white;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 15px -4px #000;
   box-shadow: 5px 5px 15px -4px #000;
   cursor: pointer;
-}
-.decks li button {
-  position: absolute;
-  font-size: 10px;
-  top: 0;
-  right: 5px;
-
 }

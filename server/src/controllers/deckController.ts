@@ -1,22 +1,22 @@
 import express , {Request, Response} from "express";
-import Deck from "../models/Topic"
+import Topic from "../models/Topic"
 
 
-export async function getDecksController(req:Request, res:Response) {
-    const decks  = await Deck.find()
-    res.json(decks)
+export async function getTopics(req:Request, res:Response) {
+    const topics  = await Topic.find()
+    res.json(topics)
 }
 
-export async function createDeckController(req: Request, res: Response) {
-    const newDeck = new Deck({
+export async function createTopic(req: Request, res: Response) {
+    const newTopic = new Topic({
         title: req.body.title
     })
-    const createdDeck = await newDeck.save()
-    res.json(createdDeck)
+    const createdTopic = await newTopic.save()
+    res.json(createdTopic)
 }
 
-export async function deleteDeckController(req: Request, res: Response){
-    const deckId = req.params.deckId
-    const deck = await Deck.findByIdAndDelete(deckId)
-    res.json(deck)
+export async function deleteTopic(req: Request, res: Response){
+    const topicId = req.params.deckId
+    const topic = await Topic.findByIdAndDelete(topicId)
+    res.json(topic)
 }
