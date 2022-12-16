@@ -1,5 +1,5 @@
 import express , {Request, Response} from "express";
-import Deck from "../models/Deck"
+import Deck from "../models/Topic"
 
 
 export async function getDecksController(req:Request, res:Response) {

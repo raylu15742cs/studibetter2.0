@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const ObjectId = mongoose.Types.ObjectId
 
-const DeckSchema = new Schema({
+const TopicSchema = new Schema({
     title: String,
     cards: [String]
 })
 
-const DeckModel = mongoose.model("Deck", DeckSchema)
+const TopicModel = mongoose.model("Topic", TopicSchema)
 
-export default DeckModel;
+export default TopicModel;

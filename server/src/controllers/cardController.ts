@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Deck from "../models/Deck";
+import Deck from "../models/Topic";
 
 
 export async function createCardController(req: Request, res: Response) {

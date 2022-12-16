@@ -5,7 +5,7 @@ import cors from "cors";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import Deck from "./models/Deck"
+import Deck from "./models/Topic"
 import { createDeckController, deleteDeckController, getDecksController } from "./controllers/deckController";
 import { createCardController, deleteCardController, getDeckController } from "./controllers/cardController";
 
