@@ -24,10 +24,11 @@ export async function createCard(topicId: string , title: string, definition: st
     return response.json()
 }
 // Get Cards from specific topic
-export async function getCards(deckId: string): Promise<TCard[]> {
+export async function getCards(deckId: string){
     const response = await fetch(`${API_URL}/decks/${deckId}`)
     return response.json()
 }
+
 
 // Delete Card
 export async function deleteCard(deckId: string ,cardId: string): Promise<TDeck> {

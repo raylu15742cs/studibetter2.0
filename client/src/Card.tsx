@@ -4,6 +4,7 @@ import { createCard, deleteCard, getCards, TCard } from "./api/cardHandler";
 import './App.css'
 
 export default function Deck() {
+  const [topic, setTopic] = useState("")
   const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
@@ -27,14 +28,15 @@ export default function Deck() {
     async function fetchCards() {
       if(!deckId) return;
       const newCard = await getCards(deckId);
-      setCards(newCard);
+      setCards(newCard.cards);
+      setTopic(newCard.topics.title)
     }
     fetchCards();
   }, [deckId])
 
   return (
     <div className="App">
-      <h1>{deckId}</h1>
+      <h1>{topic}</h1>
       <ul className="decks">
         {cards.map((card: TCard) => (
             <li key={card._id}>

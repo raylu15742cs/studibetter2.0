@@ -16,8 +16,9 @@ export async function getCards(req: Request, res: Response) {
     const topicId = req.params.deckId
     const topics = await Topic.findById(topicId)
     const cards = await Card.find({topic: topics})
-    res.json(cards)
+    res.json({cards, topics})
 }
+
 
 export async function deleteCard(req: Request, res: Response){
     const cardId = req.params.cardId

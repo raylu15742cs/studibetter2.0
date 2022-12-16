@@ -23,6 +23,7 @@ export async function getDecks(): Promise<TDeck[]> {
     const response = await fetch(`${API_URL}/decks`);
     return response.json()
 }
+
 // Delete Decks
 export async function deleteDeck(deckId: string){
     await fetch(`${API_URL}/decks/${deckId}`, {
