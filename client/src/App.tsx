@@ -4,10 +4,12 @@ import './App.css'
 function App() {
   const [title, setTitle] = useState("");
 
-
+  function handleCreateDeck(e: React.FormEvent) {
+    e.preventDefault();
+  }
   return (
     <div className="App">
-      <form>
+      <form onSubmit={handleCreateDeck}>
         <label htmlFor="deck-title">Deck Title</label>
         <input 
           id="deck-title"
@@ -19,6 +21,7 @@ function App() {
             }
           }
         />
+        <button>Create Deck</button>
       </form>
     </div>
   )
