@@ -21,7 +21,9 @@
 }
 
 .decks li {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100px;
   border: 1px solid white;
   background: white;
