@@ -2,9 +2,9 @@ import { API_URL } from "./config";
 
 export type TDeck = {
   title: string;
+  cards: string[];
   _id : string
 }
-
 // Create Decks
 export async function createDeck(title: string) {
     const response = await fetch(`${API_URL}/decks`, {
