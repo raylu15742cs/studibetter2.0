@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { createCard, deleteCard, getDeck } from "./api/cardHandler";
+import { createCard, deleteCard, getCards, TCard } from "./api/cardHandler";
 import { TDeck } from "./api/deckHandler";
 import './App.css'
 
 export default function Deck() {
-  const [deck, setDeck] = useState<TDeck | undefined>()
-  const [cards, setCards] = useState<string[]>([])
-  const [text, setText] = useState("");
+  const [decks, setDeck] = useState<TDeck | undefined>()
+  const [cards, setCards] = useState()
+  const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
   let { deckId } = useParams();
  
   async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
-    const { cards: serverCards}= await createCard(deckId!, text);
     //setDecks([...decks, deck])
-    setCards(serverCards)
-    setText("")
+    const {title: serverCards} = await createCard(deckId!, title, definition)
+    //setCards(serverCards)
+    setTitle("")
+    setDefinition("")
   }
 
   // async function handleDeleteCard( index: number) {
@@ -27,37 +28,36 @@ export default function Deck() {
   // }
 
   useEffect(() => {
-    async function fetchDeck() {
+    async function fetchCards() {
        if(!deckId) return;
-      const newDeck = await getDeck(deckId);
-      setDeck(newDeck);
-      setCards(newDeck.cards)
+      const newDeck = await getCards(deckId);
+      //setDeck(newDeck);
     }
-    fetchDeck();
+    fetchCards();
   }, [deckId])
 
   return (
     <div className="App">
       <h1>{deckId}</h1>
-      <ul className="decks">
+      {/* <ul className="decks">
         {cards.map((card , index) => (
             <li key={index}>
               {/* <button onClick={() => handleDeleteCard(index)}>X</button> */}
-              {card}
+              {/* {card}
               </li>
         ))
         }
-      </ul>
+      </ul> */}
       <form  className="cardform" onSubmit={handleCreateDeck}>
         <label htmlFor="card-title">Card Name</label>
         <input 
           id="card-title"
-          value = {text}
+          value = {title}
           placeholder = "Keyword"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
             // Save what is typed
             {
-              setText(e.target.value)
+              setTitle(e.target.value)
             }
           }
         />

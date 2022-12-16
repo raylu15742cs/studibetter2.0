@@ -9,3 +9,6 @@ const CardSchema = new Schema ({
     status: {type: Number, default: 0},
     topic: [{type: ObjectId}]
 })
+
+const CardModel = mongoose.model("Card", CardSchema)
+export default CardModel;

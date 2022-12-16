@@ -1,23 +1,39 @@
 import { API_URL } from "./config";
 import { TDeck } from "./deckHandler";
 
+export type TCard = {
+  title: string;
+  definition: string;
+  topic: string[];
+  _id : string
+}
 
 // Create Decks
-export async function createCard(deckId: string , text: string): Promise<TDeck>{
-    const response = await fetch(`${API_URL}/decks/${deckId}/cards`, {
+export async function createCard(topicId: string , title: string, definition: string): Promise<TCard>{
+    const response = await fetch(`${API_URL}/decks/${topicId}/cards`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body:JSON.stringify({
-        text,
+        title,
+        definition,
+        topic: topicId
       })
     });
     return response.json()
 }
-// Get Deck Cards
-export async function getDeck(deckId: string): Promise<TDeck> {
-    const response = await fetch(`${API_URL}/decks/${deckId}`);
+// Get Cards from specific topic
+export async function getCards(topicId: string): Promise<TCard> {
+    const response = await fetch(`${API_URL}/decks/${topicId}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body:JSON.stringify({
+            topicId
+        })
+    });
     return response.json()
 }
 
