@@ -4,14 +4,18 @@ import './App.css'
 function App() {
   const [title, setTitle] = useState("");
 
-  function handleCreateDeck(e: React.FormEvent) {
+  async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
-    fetch('http://localhost:5003/decks', {
+    await fetch('http://localhost:5003/decks', {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body:JSON.stringify({
         title,
       })
     })
+    setTitle("")
   }
   return (
     <div className="App">
