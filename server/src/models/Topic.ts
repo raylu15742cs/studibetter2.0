@@ -5,7 +5,6 @@ const ObjectId = mongoose.Types.ObjectId
 
 const TopicSchema = new Schema({
     title: {type: String, minLength: 1, maxLength: 100 },
-    cards: [String]
 })
 
 const TopicModel = mongoose.model("Topic", TopicSchema)

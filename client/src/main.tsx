@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
-import Deck from './Deck';
+import Deck from './Card';
 import Header from './header';
 
 const router = createBrowserRouter([
