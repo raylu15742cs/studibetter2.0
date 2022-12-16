@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { createCard } from "./api/cardHandler";
+import { createCard, deleteCard, getDeck } from "./api/cardHandler";
+import { TDeck } from "./api/deckHandler";
 
 export default function Deck() {
+  const [deck, setDeck] = useState<TDeck | undefined>()
   const [cards, setCards] = useState<string[]>([])
   const [text, setText] = useState("");
   let { deckId } = useParams();
@@ -15,25 +17,29 @@ export default function Deck() {
     setText("")
   }
 
-//   async function handleDeleteDeck(deckId: string) {
-//     await deleteDeck(deckId)
-//     setDecks(decks.filter((deck) => deck._id !==deckId))
-//   }
+  async function handleDeleteCard( index: number) {
+    if (!deckId) return;
+    const newDeck = await deleteCard(deckId, index)
+    setCards(newDeck.cards);
+    //setDecks(decks.filter((deck) => deck._id !==deckId))
+  }
 
-//   useEffect(() => {
-//     async function fetchDecks() {
-//       const newDecks = await getDecks();
-//       setDecks(newDecks);
-//     }
-//     fetchDecks();
-//   }, [])
+  useEffect(() => {
+    async function fetchDeck() {
+       if(!deckId) return;
+      const newDeck = await getDeck(deckId);
+      setDeck(newDeck);
+      setCards(newDeck.cards)
+    }
+    fetchDeck();
+  }, [deckId])
 
   return (
     <div className="App">
       <ul className="decks">
-        {cards.map((card) => (
-            <li key={card}>
-              {/* <button onClick={() => handleDeletecard(card)}>X</button> */}
+        {cards.map((card , index) => (
+            <li key={index}>
+              <button onClick={() => handleDeleteCard(index)}>X</button>
               {card}
               </li>
         ))

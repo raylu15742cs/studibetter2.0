@@ -15,5 +15,16 @@ export async function createCard(deckId: string , text: string): Promise<TDeck>{
     });
     return response.json()
 }
+// Get Deck Cards
+export async function getDeck(deckId: string): Promise<TDeck> {
+    const response = await fetch(`${API_URL}/decks/${deckId}`);
+    return response.json()
+}
 
-
+// Delete Card
+export async function deleteCard(deckId: string , index:number): Promise<TDeck> {
+    const response = await fetch(`${API_URL}/decks/${deckId}/cards/${index}`, {
+      method: "DELETE",
+    })
+    return response.json()
+}
