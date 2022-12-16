@@ -1,14 +1,16 @@
 import express , {Request, Response} from "express";
 import mongoose from "mongoose";
+import cors from "cors";
 
 import * as dotenv from 'dotenv'
 dotenv.config()
 
 import Deck from "./models/Deck"
 
-const PORT = 3001;
+const PORT = 5003;
 
 const app = express()
+app.use(cors())
 app.use(express.json())
 
 // app.get("/", (req: Request ,res: Response) => {
@@ -22,8 +24,6 @@ app.post("/decks" , async(req: Request, res: Response) => {
     const createdDeck = await newDeck.save()
     res.json(createdDeck)
 })
-
-app.listen(3000);
 
 mongoose
     .connect(process.env.MONGO_URL!).then(() => {
