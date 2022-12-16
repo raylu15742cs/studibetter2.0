@@ -13,10 +13,10 @@
 
 .decks {
   display: grid;
-  width: 500px;
+  width: 700px;
   margin: 0 auto;
   grid-gap: 10px;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(5,1fr);
   color: black;
 }
 
