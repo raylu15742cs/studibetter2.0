@@ -5,12 +5,19 @@
   text-align: center;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .decks {
   display: grid;
   width: 500px;
   margin: 0 auto;
   grid-gap: 10px;
-  grid-template-columns: repeat(3,1fr)
+  grid-template-columns: repeat(3,1fr);
+  color: black;
 }
 
 .decks li {
