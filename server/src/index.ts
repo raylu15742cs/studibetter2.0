@@ -7,7 +7,7 @@ dotenv.config()
 
 import Deck from "./models/Topic"
 import { createTopic, deleteTopic, getTopics } from "./controllers/topicController";
-import { createCard, getCards } from "./controllers/cardController";
+import { createCard, deleteCard, getCards } from "./controllers/cardController";
 
 const PORT = 5003;
 
@@ -25,7 +25,7 @@ app.delete('/decks/:deckId', deleteTopic)
 
 app.get("/decks/:deckId", getCards)
 app.post("/decks/:deckId/cards" , createCard)
-// app.delete("/decks/:deckId/cards/:cardId", deleteCardController)
+app.delete("/decks/:deckId/cards/:cardId", deleteCard)
 
 mongoose
     .connect(process.env.MONGO_URL!).then(() => {

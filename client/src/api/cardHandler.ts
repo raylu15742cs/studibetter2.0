@@ -24,22 +24,14 @@ export async function createCard(topicId: string , title: string, definition: st
     return response.json()
 }
 // Get Cards from specific topic
-export async function getCards(topicId: string): Promise<TCard> {
-    const response = await fetch(`${API_URL}/decks/${topicId}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body:JSON.stringify({
-            topicId
-        })
-    });
+export async function getCards(deckId: string): Promise<TCard[]> {
+    const response = await fetch(`${API_URL}/decks/${deckId}`)
     return response.json()
 }
 
 // Delete Card
-export async function deleteCard(deckId: string , index:number): Promise<TDeck> {
-    const response = await fetch(`${API_URL}/decks/${deckId}/cards/${index}`, {
+export async function deleteCard(deckId: string ,cardId: string): Promise<TDeck> {
+    const response = await fetch(`${API_URL}/decks/${deckId}/cards/${cardId}`, {
       method: "DELETE",
     })
     return response.json()

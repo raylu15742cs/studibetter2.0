@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard } from "./api/cardHandler";
-import { TDeck } from "./api/deckHandler";
 import './App.css'
 
 export default function Deck() {
-  const [decks, setDeck] = useState<TDeck | undefined>()
-  const [cards, setCards] = useState()
+  const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
   let { deckId } = useParams();
@@ -14,24 +12,22 @@ export default function Deck() {
   async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
     //setDecks([...decks, deck])
-    const {title: serverCards} = await createCard(deckId!, title, definition)
-    //setCards(serverCards)
+    const card = await createCard(deckId!, title, definition)
+    setCards([...cards , card])
     setTitle("")
     setDefinition("")
   }
 
-  // async function handleDeleteCard( index: number) {
-  //   if (!deckId) return;
-  //   const newDeck = await deleteCard(deckId, index)
-  //   setCards(newDeck.cards);
-  //   //setDecks(decks.filter((deck) => deck._id !==deckId))
-  // }
+  async function handleDeleteCard( cardid: string) {
+    await deleteCard(deckId!, cardid)
+    setCards(cards.filter((card) => card._id !== cardid))
+  }
 
   useEffect(() => {
     async function fetchCards() {
-       if(!deckId) return;
-      const newDeck = await getCards(deckId);
-      //setDeck(newDeck);
+      if(!deckId) return;
+      const newCard = await getCards(deckId);
+      setCards(newCard);
     }
     fetchCards();
   }, [deckId])
@@ -39,15 +35,15 @@ export default function Deck() {
   return (
     <div className="App">
       <h1>{deckId}</h1>
-      {/* <ul className="decks">
-        {cards.map((card , index) => (
-            <li key={index}>
-              {/* <button onClick={() => handleDeleteCard(index)}>X</button> */}
-              {/* {card}
+      <ul className="decks">
+        {cards.map((card: TCard) => (
+            <li key={card._id}>
+              <button onClick={() => handleDeleteCard(card._id)}>X</button>
+              {card.title}
               </li>
         ))
         }
-      </ul> */}
+      </ul>
       <form  className="cardform" onSubmit={handleCreateDeck}>
         <label htmlFor="card-title">Card Name</label>
         <input 
