@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 import './App.css'
 
 function App() {
@@ -17,6 +17,15 @@ function App() {
     })
     setTitle("")
   }
+
+  useEffect(() => {
+    console.log("we are here");
+
+    return () => {
+      console.log("cleanup")
+    }
+  }, [])
+
   return (
     <div className="App">
       <form onSubmit={handleCreateDeck}>

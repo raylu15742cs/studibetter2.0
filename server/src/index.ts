@@ -10,12 +10,20 @@ import Deck from "./models/Deck"
 const PORT = 5003;
 
 const app = express()
-app.use(cors())
+app.use(
+    cors({
+        origin: "8"
+    })
+)
 app.use(express.json())
 
-// app.get("/", (req: Request ,res: Response) => {
-//     res.send("hello world")
-// })
+app.get("/decks", async (req:Request, res:Response) => {
+    // Fetch all decks and send back to users
+    // 1. How to get deck from mongo?
+    const decks  = await Deck.find()
+    // 2. Send back array to UI
+    res.json(decks)
+})
 
 app.post("/decks" , async(req: Request, res: Response) => {
     const newDeck = new Deck({
