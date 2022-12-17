@@ -41,10 +41,11 @@ function App() {
         ))
         }
       </ul>
-      <form onSubmit={handleCreateDeck}>
+      <form className="cardform" onSubmit={handleCreateDeck}>
         <label htmlFor="deck-title">Deck Title</label>
         <input 
           id="deck-title"
+          placeholder="Topic"
           value = {title}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
             // Save what is typed

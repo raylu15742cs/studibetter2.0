@@ -11,6 +11,8 @@ export default function Deck() {
   const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
+  const [addActive, setAddActive] = useState(false);
+  const [updateActive, setUpdateActive] = useState(false);
   let { deckId } = useParams();
  
   async function handleCreateDeck(e: React.FormEvent) {
@@ -20,6 +22,7 @@ export default function Deck() {
     setCards([...cards , card])
     setTitle("")
     setDefinition("")
+    setAddActive(false)
   }
 
   async function handleDeleteCard( cardid: string) {
@@ -28,7 +31,6 @@ export default function Deck() {
   }
 
   function checkCard() {
-    console.log(cards.length)
     if (cards.length == 0) {
       setIsEmpty(true)
     } else {
@@ -67,38 +69,43 @@ export default function Deck() {
               <button onClick={() => handleDeleteCard(card._id)}>X</button>
               <p>{card.title}</p>
               <p className="hidedef"> Definition: {card.definition}</p>
+              {/* <button className="hidedef" onClick={() => {console.log(card._id)}}> edit </button> */}
             </div>
   
         ))
         }
       </div>
       
-      <form  className="cardform" onSubmit={handleCreateDeck}>
-        <label htmlFor="card-title">Card Name</label>
-        <input 
-          id="card-title"
-          value = {title}
-          placeholder = "Keyword"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            // Save what is typed
-            {
-              setTitle(e.target.value)
+      <div className="addPopup" onClick={() => setAddActive(true)}>Add Card</div>
+      { addActive ? (
+        <form  className="cardform" onSubmit={handleCreateDeck}>
+          <div className="closePopup" onClick={() => setAddActive(false)}>X</div>
+          <label htmlFor="card-title">Card Name</label>
+          <input 
+            id="card-title"
+            value = {title}
+            placeholder = "Keyword"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+              // Save what is typed
+              {
+                setTitle(e.target.value)
+              }
             }
-          }
-        />
-        <input 
-          id="card-title"
-          value = {definition}
-          placeholder = "Definition"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            // Save what is typed
-            {
-              setDefinition(e.target.value)
+          />
+          <input 
+            id="card-title"
+            value = {definition}
+            placeholder = "Definition"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+              // Save what is typed
+              {
+                setDefinition(e.target.value)
+              }
             }
-          }
-        />
-        <button>Create Card</button>
-      </form>
+          />
+          <button>Create Card</button>
+        </form>) : ""
+      }
     </div>
   )
 }
