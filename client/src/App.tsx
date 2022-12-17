@@ -3,6 +3,7 @@ import './App.css'
 import { Link } from "react-router-dom";
 import { TDeck, createDeck, getDecks } from "./api/deckHandler";
 import Header from "./header";
+import { deleteCard } from "./api/cardHandler";
 
 
 
@@ -32,9 +33,11 @@ function App() {
       <h1> Topics</h1>
       <ul className="decks">
         {decks.map((deck) => (
+          <Link className="decktitle" to={`decks/${deck._id}`}>
             <li key={deck._id}>
-              <Link to={`decks/${deck._id}`}>{deck.title}</Link>
+              {deck.title}
               </li>
+          </Link>
         ))
         }
       </ul>

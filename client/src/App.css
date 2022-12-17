@@ -18,19 +18,25 @@
   color: black;
 }
 
-.card {
+.card , .decks li{
   position: relative;
+  display: flex;
   justify-content: center;
+  align-items: center;
   height: 100px;
   width: 200px;
   border: 1px solid white;
   background: white;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 15px -4px #000;
+  list-style: none;
   box-shadow: 5px 5px 15px -4px #000;
   cursor: pointer;
 }
 
+.card {
+  flex-direction: column
+}
 .cardform {
   display: flex;
   flex-direction: column;
