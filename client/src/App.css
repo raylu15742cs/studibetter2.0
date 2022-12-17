@@ -17,6 +17,9 @@
   gap: 10px;
   color: black;
 }
+.blur {
+  filter: blur(2px);
+}
 
 .card , .decks li{
   position: relative;
@@ -43,7 +46,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
   border: 1px solid red;
-  background-color:red;
+  background-color: #242424;
   padding: 100px;
   border-radius: 15px;
   display: flex;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard } from "./api/cardHandler";
 import { deleteTopic } from "./api/deckHandler";
@@ -13,6 +13,7 @@ export default function Deck() {
   const [definition, setDefinition] = useState("");
   const [addActive, setAddActive] = useState(false);
   const [updateActive, setUpdateActive] = useState(false);
+  const [blurApp, setBlurApp] = useState(true);
   let { deckId } = useParams();
  
   async function handleCreateDeck(e: React.FormEvent) {
@@ -23,6 +24,7 @@ export default function Deck() {
     setTitle("")
     setDefinition("")
     setAddActive(false)
+    setBlurApp(blurApp => !blurApp)
   }
 
   async function handleDeleteCard( cardid: string) {
@@ -57,29 +59,31 @@ export default function Deck() {
   }, [cards])
 
   return (
-    <div className="App">
-      <Header />
-      <h1>{topic}</h1>
-      <Link to={'/'}>
-        <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteDeck(deckId!)}>Delete Topic</button>
-      </Link>
-      <div className="decks">
-        {cards.map((card: TCard) => (
-            <div className="card" key={card._id}>
-              <button onClick={() => handleDeleteCard(card._id)}>X</button>
-              <p>{card.title}</p>
-              <p className="hidedef"> Definition: {card.definition}</p>
-              {/* <button className="hidedef" onClick={() => {console.log(card._id)}}> edit </button> */}
-            </div>
-  
-        ))
-        }
+    <div>
+      <div className={blurApp ? "app" : "blur app"}>
+        <Header />
+        <h1>{topic}</h1>
+        <Link to={'/'}>
+          <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteDeck(deckId!)}>Delete Topic</button>
+        </Link>
+        <div className="decks">
+          {cards.map((card: TCard) => (
+              <div className="card" key={card._id}>
+                <button onClick={() => handleDeleteCard(card._id)}>X</button>
+                <p>{card.title}</p>
+                <p className="hidedef"> Definition: {card.definition}</p>
+                {/* <button className="hidedef" onClick={() => {console.log(card._id)}}> edit </button> */}
+              </div>
+    
+          ))
+          }
+        </div>
       </div>
       
-      <div className="addPopup" onClick={() => setAddActive(true)}>Add Card</div>
+      <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(false)}}>Add Card</div>
       { addActive ? (
-        <form  className="cardform" onSubmit={handleCreateDeck}>
-          <div className="closePopup" onClick={() => setAddActive(false)}>X</div>
+        <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateDeck(e)}}>
+          <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(false)}}>X</div>
           <label htmlFor="card-title">Card Name</label>
           <input 
             id="card-title"
