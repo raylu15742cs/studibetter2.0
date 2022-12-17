@@ -44,7 +44,7 @@
 	transform: translate(-50%, -50%);
   border: 1px solid red;
   background-color:red;
-  padding: 50px;
+  padding: 100px;
   border-radius: 15px;
   display: flex;
   flex-direction: column;

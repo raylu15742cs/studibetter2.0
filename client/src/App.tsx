@@ -10,12 +10,14 @@ import { deleteCard } from "./api/cardHandler";
 function App() {
   const [decks, setDecks] = useState<TDeck[]>([])
   const [title, setTitle] = useState("");
+    const [addActive, setAddActive] = useState(false);
 
   async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
     const deck = await createDeck(title);
     setDecks([...decks, deck])
     setTitle("")
+    setAddActive(false)
   }
 
 
@@ -41,21 +43,26 @@ function App() {
         ))
         }
       </ul>
-      <form className="cardform" onSubmit={handleCreateDeck}>
-        <label htmlFor="deck-title">Deck Title</label>
-        <input 
-          id="deck-title"
-          placeholder="Topic"
-          value = {title}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            // Save what is typed
-            {
-              setTitle(e.target.value)
+      <div className="addPopup" onClick={() => setAddActive(true)}>Add Topic</div>
+      { addActive ? (
+        <form className="cardform" onSubmit={handleCreateDeck}>
+          <div className="closePopup" onClick={() => setAddActive(false)}>X</div>
+          <label htmlFor="deck-title">Deck Title</label>
+          <input 
+            id="deck-title"
+            placeholder="Topic"
+            value = {title}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+              // Save what is typed
+              {
+                setTitle(e.target.value)
+              }
             }
-          }
-        />
-        <button>Create Deck</button>
+          />
+          <button>Create Deck</button>
       </form>
+      ) : ""
+      }
     </div>
   )
 }
