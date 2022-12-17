@@ -18,10 +18,9 @@
   color: black;
 }
 
-.decks li {
-  display: flex;
+.card {
+  position: relative;
   justify-content: center;
-  align-items: center;
   height: 100px;
   width: 200px;
   border: 1px solid white;
@@ -54,4 +53,18 @@
 #deletebutton {
 
   margin: auto;
+}
+
+.card button {
+  position:absolute;
+  top: 0;
+  right: 0;
+}
+
+.hidedef {
+  display: none;
+}
+
+.card:hover .hidedef {
+  display: block;
 }

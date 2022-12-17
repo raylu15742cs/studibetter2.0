@@ -61,15 +61,17 @@ export default function Deck() {
       <Link to={'/'}>
         <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteDeck(deckId!)}>Delete Topic</button>
       </Link>
-      <ul className="decks">
+      <div className="decks">
         {cards.map((card: TCard) => (
-            <li key={card._id}>
+            <div className="card" key={card._id}>
               <button onClick={() => handleDeleteCard(card._id)}>X</button>
-              {card.title}
-              </li>
+              <p>{card.title}</p>
+              <p className="hidedef"> Definition: {card.definition}</p>
+            </div>
+  
         ))
         }
-      </ul>
+      </div>
       
       <form  className="cardform" onSubmit={handleCreateDeck}>
         <label htmlFor="card-title">Card Name</label>
