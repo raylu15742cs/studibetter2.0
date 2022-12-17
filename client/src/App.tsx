@@ -1,7 +1,8 @@
 import React, { useEffect, useState} from "react";
 import './App.css'
 import { Link } from "react-router-dom";
-import { TDeck, createDeck, deleteDeck, getDecks } from "./api/deckHandler";
+import { TDeck, createDeck, getDecks } from "./api/deckHandler";
+import Header from "./header";
 
 
 
@@ -16,10 +17,6 @@ function App() {
     setTitle("")
   }
 
-  async function handleDeleteDeck(deckId: string) {
-    await deleteDeck(deckId)
-    setDecks(decks.filter((deck) => deck._id !==deckId))
-  }
 
   useEffect(() => {
     async function fetchDecks() {
@@ -31,6 +28,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <h1> Topics</h1>
       <ul className="decks">
         {decks.map((deck) => (

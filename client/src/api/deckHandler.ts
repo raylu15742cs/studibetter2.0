@@ -25,7 +25,8 @@ export async function getDecks(): Promise<TDeck[]> {
 }
 
 // Delete Decks
-export async function deleteDeck(deckId: string){
+export async function deleteTopic(deckId: string){
+
     await fetch(`${API_URL}/decks/${deckId}`, {
       method: "DELETE",
     })

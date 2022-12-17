@@ -7,7 +7,6 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 60vh;
   justify-content: center;
   gap: 20px;
 }
@@ -43,4 +42,16 @@
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%); */
+}
+
+.Header{
+  height: 15vh;
+}
+
+.show {
+  display: none;
+}
+#deletebutton {
+
+  margin: auto;
 }

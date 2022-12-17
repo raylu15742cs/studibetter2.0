@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard } from "./api/cardHandler";
+import { deleteTopic } from "./api/deckHandler";
 import './App.css'
+import Header from "./header";
 
 export default function Deck() {
+  const [isEmpty, setIsEmpty] = useState<Boolean>(true)
   const [topic, setTopic] = useState("")
   const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");
@@ -24,6 +27,19 @@ export default function Deck() {
     setCards(cards.filter((card) => card._id !== cardid))
   }
 
+  function checkCard() {
+    console.log(cards.length)
+    if (cards.length == 0) {
+      setIsEmpty(true)
+    } else {
+      setIsEmpty(false)
+    }
+  }
+  async function handleDeleteDeck(deckId: string) {
+    await deleteTopic(deckId)
+
+  }
+
   useEffect(() => {
     async function fetchCards() {
       if(!deckId) return;
@@ -34,9 +50,17 @@ export default function Deck() {
     fetchCards();
   }, [deckId])
 
+  useEffect(()=> {
+    checkCard();
+  }, [cards])
+
   return (
     <div className="App">
+      <Header />
       <h1>{topic}</h1>
+      <Link to={'/'}>
+        <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteDeck(deckId!)}>Delete Topic</button>
+      </Link>
       <ul className="decks">
         {cards.map((card: TCard) => (
             <li key={card._id}>
@@ -46,6 +70,7 @@ export default function Deck() {
         ))
         }
       </ul>
+      
       <form  className="cardform" onSubmit={handleCreateDeck}>
         <label htmlFor="card-title">Card Name</label>
         <input 
