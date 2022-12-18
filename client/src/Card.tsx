@@ -80,10 +80,10 @@ export default function Deck() {
         </div>
       </div>
       
-      <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(false)}}>Add Card</div>
+      <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp=>!blurApp)}}>Add Card</div>
       { addActive ? (
         <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateDeck(e)}}>
-          <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(false)}}>X</div>
+          <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp=>!blurApp)}}>X</div>
           <label htmlFor="card-title">Card Name</label>
           <input 
             id="card-title"
