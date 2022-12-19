@@ -48,14 +48,16 @@ export default function Deck() {
   async function getCard(card: TCard) {
     console.log(card._id)
     setCurrentCard(card)
+    setTitle(card.title)
+    setDefinition(card.definition)
     setUpdateActive(true)
   }
 
   async function handleUpdateCard(e: React.FormEvent, id:string) {
-    e.preventDefault();
-    const card = await updateCard(deckId! , id , title, definition)
-    console.log(e)
     console.log(id)
+    e.preventDefault();
+    await updateCard(deckId! , id , title, definition)
+    setUpdateActive(false)
   }
 
   useEffect(() => {
@@ -66,7 +68,7 @@ export default function Deck() {
       setTopic(newCard.topics.title)
     }
     fetchCards();
-  }, [deckId])
+  }, [deckId , cards])
 
   useEffect(()=> {
     checkCard();
@@ -102,7 +104,6 @@ export default function Deck() {
           <label htmlFor="card-title">Card Name</label>
           <input 
             id="card-title"
-            value = {title}
             placeholder = "Keyword"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
               // Save what is typed
@@ -113,7 +114,6 @@ export default function Deck() {
           />
           <input 
             id="card-title"
-            value = {definition}
             placeholder = "Definition"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
               // Save what is typed
