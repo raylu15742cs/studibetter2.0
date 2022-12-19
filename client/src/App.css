@@ -87,6 +87,12 @@
   display: none;
 }
 
-.card:hover .hidedef {
+.card:hover .hidedef , .card:hover .hideedit{
   display: block;
+}
+
+.hideedit {
+  display: none;
+  position: absolute;
+  botton: 0;
 }

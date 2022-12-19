@@ -72,7 +72,7 @@ export default function Deck() {
                 <button onClick={() => handleDeleteCard(card._id)}>X</button>
                 <p>{card.title}</p>
                 <p className="hidedef"> Definition: {card.definition}</p>
-                {/* <button className="hidedef" onClick={() => {console.log(card._id)}}> edit </button> */}
+                <button className="hideedit" onClick={() => {console.log(card._id)}}> edit </button> 
               </div>
     
           ))
