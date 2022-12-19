@@ -69,7 +69,7 @@ export default function Deck() {
         <div className="decks">
           {cards.map((card: TCard) => (
               <div className="card" key={card._id}>
-                <button onClick={() => handleDeleteCard(card._id)}>X</button>
+                <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
                 <p>{card.title}</p>
                 <p className="hidedef"> Definition: {card.definition}</p>
                 <button className="hideedit" onClick={() => {console.log(card._id)}}> edit </button> 

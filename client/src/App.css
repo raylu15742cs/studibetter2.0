@@ -77,22 +77,24 @@
   margin: auto;
 }
 
-.card button {
+.hidedef {
+  display: none;
+}
+
+.card:hover .hidedef , .card:hover .hideedit , .card:hover .hidedelete{
+  display: block;
+}
+
+.hidedelete {
+  display: none;
   position:absolute;
   top: 0;
   right: 0;
 }
 
-.hidedef {
-  display: none;
-}
-
-.card:hover .hidedef , .card:hover .hideedit{
-  display: block;
-}
-
 .hideedit {
   display: none;
   position: absolute;
-  botton: 0;
+  bottom: 0;
+  right: 0;
 }
