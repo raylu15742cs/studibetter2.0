@@ -63,8 +63,8 @@ export default function Deck() {
       <div className={blurApp ? "app" : "blur app"}>
         <Header />
         <h1>{topic}</h1>
-        <Link to={'/'}>
-          <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteDeck(deckId!)}>Delete Topic</button>
+        <Link onClick={() => handleDeleteDeck(deckId!)} to={'/'}>
+          <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
         <div className="decks">
           {cards.map((card: TCard) => (
