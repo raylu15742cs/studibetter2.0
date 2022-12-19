@@ -85,10 +85,22 @@
   display: none;
 }
 
-.card:hover .hidedef , .card:hover .hideedit , .card:hover .hidedelete{
+.card:hover .hidedef , .card:hover .hideedit , .card:hover .hidedelete, .topictag:hover .edittopic {
   display: block;
 }
+.edittopic {
+  display: none;
+  height: 50px;
+  width: 100px;
+  border: 2px solid red;
+}
 
+.topictag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 .hidedelete {
   display: none;
   position:absolute;
