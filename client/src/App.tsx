@@ -10,7 +10,9 @@ import { deleteCard } from "./api/cardHandler";
 function App() {
   const [decks, setDecks] = useState<TDeck[]>([])
   const [title, setTitle] = useState("");
-    const [addActive, setAddActive] = useState(false);
+  const [addActive, setAddActive] = useState(false);
+  const [blurApp, setBlurApp] = useState(true);
+    
 
   async function handleCreateDeck(e: React.FormEvent) {
     e.preventDefault();
@@ -18,6 +20,7 @@ function App() {
     setDecks([...decks, deck])
     setTitle("")
     setAddActive(false)
+    setBlurApp(blurApp => !blurApp)
   }
 
 
@@ -31,22 +34,26 @@ function App() {
 
   return (
     <div className="App">
+      <div className={blurApp ? "" : "blur"} >
       <Header />
       <h1> Topics</h1>
-      <ul className="decks">
+      <div className="decks">
         {decks.map((deck) => (
-          <Link className="decktitle" to={`decks/${deck._id}`}>
-            <li key={deck._id}>
-              {deck.title}
-              </li>
-          </Link>
+          <div className="card">
+            <Link className="decktitle" to={`decks/${deck._id}`}>
+              <h1 key={deck._id}>
+                {deck.title}
+                </h1>
+            </Link>
+         </div>
         ))
         }
-      </ul>
-      <div className="addPopup" onClick={() => setAddActive(true)}>Add Topic</div>
+      </div>
+      <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp => !blurApp)}}>Add Topic</div>
+      </div>
       { addActive ? (
         <form className="cardform" onSubmit={handleCreateDeck}>
-          <div className="closePopup" onClick={() => setAddActive(false)}>X</div>
+          <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
           <label htmlFor="deck-title">Deck Title</label>
           <input 
             id="deck-title"

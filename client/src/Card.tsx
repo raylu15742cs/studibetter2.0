@@ -86,9 +86,9 @@ export default function Deck() {
           {cards.map((card: TCard) => (
               <div className="card" key={card._id}>
                 <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
-                <p>{card.title}</p>
+                <h1>{card.title}</h1>
                 <p className="hidedef"> Definition: {card.definition}</p>
-                <button className="hideedit" onClick={() => {getCard(card)}}> edit </button> 
+                <button className="hideedit" onClick={() => {getCard(card); setBlurApp(blurApp=>!blurApp)}}> edit </button> 
               </div>
     
           ))
@@ -128,7 +128,7 @@ export default function Deck() {
       {
         updateActive ? (
           <form className="cardform" onSubmit={(e:React.FormEvent) => {handleUpdateCard(e , currentCard!._id)}}>
-              <div onClick={() => {setUpdateActive(false)}}> x </div>
+              <div className="closePopup" onClick={() => {setUpdateActive(false); setBlurApp(blurApp=>!blurApp)}}> x </div>
               <label> Update Card</label>
               <input 
             id="card-title"

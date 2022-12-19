@@ -26,17 +26,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  width: 200px;
+  height: 150px;
+  width: 240px;
   border: 1px solid white;
   background: white;
   border-radius: 10px;
   -webkit-box-shadow: 5px 5px 15px -4px #000;
   list-style: none;
   box-shadow: 5px 5px 15px -4px #000;
+  padding: 0 70px;
+  word-break: break-all;
   cursor: pointer;
 }
-
+.card h1 , .card p {
+  margin: 0;
+}
 .card {
   flex-direction: column
 }
