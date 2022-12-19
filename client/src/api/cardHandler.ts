@@ -37,3 +37,20 @@ export async function deleteCard(deckId: string ,cardId: string): Promise<TDeck>
     })
     return response.json()
 }
+
+// Update Card
+
+export async function updateCard( deckId: string, cardId: string, title: string, definition:string) {
+    const response = await fetch(`${API_URL}/decks/${deckId}/cards/${cardId}`, {
+        method: "PUT",
+        headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        _id: cardId,
+        title,
+        definition,
+      })
+    });
+    return response.json();
+}

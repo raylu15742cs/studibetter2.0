@@ -25,3 +25,7 @@ export async function deleteCard(req: Request, res: Response){
     const card = await Card.findByIdAndDelete(cardId)
     res.json(card)
 }
+
+export async function UpdateCard(req: Request, res: Response) {
+    console.log(req)
+}
