@@ -22,6 +22,7 @@ app.use(express.json())
 app.get("/decks", getTopics)
 app.post("/decks" , createTopic)
 app.delete('/decks/:deckId', deleteTopic)
+// app.put('/decks/:deckId' , updateTopic)
 
 app.get("/decks/:deckId", getCards)
 app.post("/decks/:deckId/cards" , createCard)

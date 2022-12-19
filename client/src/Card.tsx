@@ -13,6 +13,7 @@ export default function Deck() {
   const [definition, setDefinition] = useState("");
   const [addActive, setAddActive] = useState(false);
   const [updateActive, setUpdateActive] = useState(false);
+  const [updateTopic, setUpdateTopic] = useState(false);
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
   let { deckId } = useParams();
@@ -78,7 +79,10 @@ export default function Deck() {
     <div>
       <div className={blurApp ? "app" : "blur app"}>
         <Header />
-        <h1>{topic}</h1>
+        <div className="topictag">
+          <h1>{topic}</h1>
+          <button className="edittopic">Edit</button>
+        </div>
         <Link onClick={() => handleDeleteDeck(deckId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
