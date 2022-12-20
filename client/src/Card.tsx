@@ -8,6 +8,7 @@ import Header from "./header";
 export default function Deck() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
   const [topic, setTopic] = useState<TDeck>()
+  const [topicTitle, setTopicTitle] = useState("")
   const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");
   const [definition, setDefinition] = useState("");
@@ -56,7 +57,7 @@ export default function Deck() {
 
   async function handleUpdateTopic(e: React.FormEvent) {
     e.preventDefault();
-    console.log(topic)
+    console.log(e)
     setUpdateTopic(true)
   }
 
@@ -72,7 +73,8 @@ export default function Deck() {
       if(!deckId) return;
       const newCard = await getCards(deckId);
       setCards(newCard.cards);
-      setTopic(newCard.topics)
+      setTopic(newCard.topics);
+      setTopicTitle(newCard.topics.title)
     }
     fetchCards();
   }, [deckId , cards])
@@ -86,8 +88,8 @@ export default function Deck() {
       <div className={blurApp ? "app" : "blur app"}>
         <Header />
         <div className="topictag">
-          <h1>{topic?.title}</h1>
-          <button className="edittopic" onClick={handleUpdateTopic}>Edit</button>
+          <h1>{topicTitle}</h1>
+          <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
         </div>
         <Link onClick={() => handleDeleteDeck(deckId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
@@ -171,11 +173,22 @@ export default function Deck() {
         {/* Update Topic */}
         {
           updateTopic ? (
-            <div>
-            <form onSubmit={() => {setUpdateTopic(false)}}>
-                <button>Update</button>
+            <form  className="cardform" onSubmit={() => {setUpdateTopic(false) ; setBlurApp(blurApp=>!blurApp)}}>
+              <div className="closePopup" onClick={() => {setUpdateTopic(false); setBlurApp(blurApp=>!blurApp)}}> x </div>
+            <label> Update Card</label>
+            <input 
+            id="topoc-title"
+            defaultValue = {topic!.title}
+            placeholder = "Keyword"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+              // Save what is typed
+              {
+                setTopicTitle(e.target.value)
+              }
+            }
+            />
+              <button>Update Topic</button>
             </form>
-            </div>
           ) : ""
         }
     </div>

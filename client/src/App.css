@@ -18,7 +18,7 @@
   color: black;
 }
 .blur {
-  filter: blur(2px);
+  filter: blur(4px);
 }
 
 .card , .decks li{
