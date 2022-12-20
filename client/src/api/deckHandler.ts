@@ -34,14 +34,14 @@ export async function deleteTopic(deckId: string){
 
 // Update Decks
 export async function updateTopic(deckId: string , title: string) {
-  const response = await fetch(`${API_URL}/decks/${deckId}` , {
+  const response = await fetch(`${API_URL}/decks/${deckId}/updateTopic` , {
     method: "PUT",
     headers: {
         "Content-Type": "application/json",
       },
     body:JSON.stringify({
         _id: deckId,
-        title,
+        title
       })
   })
   return response.json()

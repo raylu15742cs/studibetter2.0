@@ -21,3 +21,8 @@ export async function deleteTopic(req: Request, res: Response){
     const topic = await Topic.findByIdAndDelete(topicId)
     res.json(topic)
 }
+
+export async function updateTopic(req: Request, res: Response) {
+    const topic = await Topic.findByIdAndUpdate(req.body._id , {title: req.body.title})
+    res.json(topic)
+}

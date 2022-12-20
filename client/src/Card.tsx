@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard, updateCard } from "./api/cardHandler";
-import { deleteTopic, TDeck } from "./api/deckHandler";
+import { deleteTopic, TDeck, updateTopic } from "./api/deckHandler";
 import './App.css'
 import Header from "./header";
 
@@ -14,7 +14,7 @@ export default function Deck() {
   const [definition, setDefinition] = useState("");
   const [addActive, setAddActive] = useState(false);
   const [updateActive, setUpdateActive] = useState(false);
-  const [updateTopic, setUpdateTopic] = useState(false);
+  const [updateTopicActive, setUpdateTopic] = useState(false);
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
   let { deckId } = useParams();
@@ -57,8 +57,16 @@ export default function Deck() {
 
   async function handleUpdateTopic(e: React.FormEvent) {
     e.preventDefault();
-    console.log(e)
     setUpdateTopic(true)
+  }
+
+  async function submitUpdateTopic(e: React.FormEvent) {
+    e.preventDefault()
+    setTopicTitle(topicTitle)
+    setUpdateTopic(false) ; 
+    setBlurApp(blurApp=>!blurApp)
+    await updateTopic(topic!._id, topicTitle)
+
   }
 
   async function handleUpdateCard(e: React.FormEvent , id: string) {
@@ -74,7 +82,6 @@ export default function Deck() {
       const newCard = await getCards(deckId);
       setCards(newCard.cards);
       setTopic(newCard.topics);
-      setTopicTitle(newCard.topics.title)
     }
     fetchCards();
   }, [deckId , cards])
@@ -88,7 +95,7 @@ export default function Deck() {
       <div className={blurApp ? "app" : "blur app"}>
         <Header />
         <div className="topictag">
-          <h1>{topicTitle}</h1>
+          <h1>{topic?.title}</h1>
           <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
         </div>
         <Link onClick={() => handleDeleteDeck(deckId!)} to={'/'}>
@@ -172,20 +179,20 @@ export default function Deck() {
       }
         {/* Update Topic */}
         {
-          updateTopic ? (
-            <form  className="cardform" onSubmit={() => {setUpdateTopic(false) ; setBlurApp(blurApp=>!blurApp)}}>
+          updateTopicActive ? (
+            <form  className="cardform" onSubmit={(e:React.FormEvent) => {submitUpdateTopic(e)}}>
               <div className="closePopup" onClick={() => {setUpdateTopic(false); setBlurApp(blurApp=>!blurApp)}}> x </div>
             <label> Update Card</label>
             <input 
-            id="topoc-title"
-            defaultValue = {topic!.title}
-            placeholder = "Keyword"
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-              // Save what is typed
-              {
-                setTopicTitle(e.target.value)
+              id="topic-title"
+              defaultValue = {topic!.title}
+              placeholder = "Keyword"
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+                // Save what is typed
+                {
+                  setTopicTitle(e.target.value)
+                }
               }
-            }
             />
               <button>Update Topic</button>
             </form>

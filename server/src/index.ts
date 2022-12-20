@@ -6,7 +6,7 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 import Deck from "./models/Topic"
-import { createTopic, deleteTopic, getTopics } from "./controllers/topicController";
+import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/topicController";
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
 
 const PORT = 5003;
@@ -22,7 +22,7 @@ app.use(express.json())
 app.get("/decks", getTopics)
 app.post("/decks" , createTopic)
 app.delete('/decks/:deckId', deleteTopic)
-// app.put('/decks/:deckId' , updateTopic)
+app.put('/decks/:deckId/updateTopic' , updateTopic)
 
 app.get("/decks/:deckId", getCards)
 app.post("/decks/:deckId/cards" , createCard)
