@@ -39,9 +39,9 @@ function App() {
       <h1> Topics</h1>
       <div className="topics">
         {topics.map((topic) => (
-          <div className="card">
+          <div className="card" key={topic._id}>
             <Link className="topictitle" to={`topics/${topic._id}`}>
-              <h1 key={topic._id}>
+              <h1>
                 {topic.title}
                 </h1>
             </Link>

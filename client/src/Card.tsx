@@ -5,7 +5,7 @@ import { deleteTopic, TTopic, updateTopic } from "./api/topicHandler";
 import './App.css'
 import Header from "./header";
 
-export default function Deck() {
+export default function Cards() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
   const [topic, setTopic] = useState<TTopic>()
   const [topicTitle, setTopicTitle] = useState("")
@@ -21,7 +21,6 @@ export default function Deck() {
  
   async function handleCreateCard(e: React.FormEvent) {
     e.preventDefault();
-    //setDecks([...decks, deck])
     const card = await createCard(topicId!, title, definition)
     setCards([...cards , card])
     setTitle("")
@@ -48,7 +47,6 @@ export default function Deck() {
   }
 
   async function getCard(card: TCard) {
-    console.log(card._id)
     setCurrentCard(card)
     setTitle(card.title)
     setDefinition(card.definition)
@@ -70,7 +68,6 @@ export default function Deck() {
   }
 
   async function handleUpdateCard(e: React.FormEvent , id: string) {
-    console.log(id)
     e.preventDefault();
     await updateCard(topicId! , id , title, definition)
     setUpdateActive(false)
@@ -79,6 +76,7 @@ export default function Deck() {
   useEffect(() => {
     async function fetchCards() {
       if(!topicId) return;
+      console.log(topicId)
       const newCard = await getCards(topicId);
       setCards(newCard.cards);
       setTopic(newCard.topics);
@@ -101,7 +99,7 @@ export default function Deck() {
         <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
-        <div className="decks">
+        <div className="cards">
           {cards.map((card: TCard) => (
               <div className="card" key={card._id}>
                 <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>

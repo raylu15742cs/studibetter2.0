@@ -13,7 +13,7 @@ export async function createCard(req: Request, res: Response) {
 }
 
 export async function getCards(req: Request, res: Response) {
-    const topicId = req.params.deckId
+    const topicId = req.params.topicId
     const topics = await Topic.findById(topicId)
     const cards = await Card.find({topic: topics})
     res.json({cards, topics})
