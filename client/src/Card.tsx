@@ -17,12 +17,12 @@ export default function Deck() {
   const [updateTopicActive, setUpdateTopic] = useState(false);
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
-  let { deckId } = useParams();
+  let { topicId } = useParams();
  
-  async function handleCreateDeck(e: React.FormEvent) {
+  async function handleCreateCard(e: React.FormEvent) {
     e.preventDefault();
     //setDecks([...decks, deck])
-    const card = await createCard(deckId!, title, definition)
+    const card = await createCard(topicId!, title, definition)
     setCards([...cards , card])
     setTitle("")
     setDefinition("")
@@ -31,7 +31,7 @@ export default function Deck() {
   }
 
   async function handleDeleteCard( cardid: string) {
-    await deleteCard(deckId!, cardid)
+    await deleteCard(topicId!, cardid)
     setCards(cards.filter((card) => card._id !== cardid))
   }
 
@@ -42,8 +42,8 @@ export default function Deck() {
       setIsEmpty(false)
     }
   }
-  async function handleDeleteDeck(deckId: string) {
-    await deleteTopic(deckId)
+  async function handleDeleteTopic(topicId: string) {
+    await deleteTopic(topicId)
 
   }
 
@@ -72,19 +72,19 @@ export default function Deck() {
   async function handleUpdateCard(e: React.FormEvent , id: string) {
     console.log(id)
     e.preventDefault();
-    await updateCard(deckId! , id , title, definition)
+    await updateCard(topicId! , id , title, definition)
     setUpdateActive(false)
   }
 
   useEffect(() => {
     async function fetchCards() {
-      if(!deckId) return;
-      const newCard = await getCards(deckId);
+      if(!topicId) return;
+      const newCard = await getCards(topicId);
       setCards(newCard.cards);
       setTopic(newCard.topics);
     }
     fetchCards();
-  }, [deckId , cards])
+  }, [topicId , cards])
 
   useEffect(()=> {
     checkCard();
@@ -98,7 +98,7 @@ export default function Deck() {
           <h1>{topic?.title}</h1>
           <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
         </div>
-        <Link onClick={() => handleDeleteDeck(deckId!)} to={'/'}>
+        <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
         <div className="decks">
@@ -118,7 +118,7 @@ export default function Deck() {
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp=>!blurApp)}}>Add Card</div>
       {/* Add New Card */}
       { addActive ? (
-        <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateDeck(e)}}>
+        <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateCard(e)}}>
           <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp=>!blurApp)}}>X</div>
           <label htmlFor="card-title">Card Name</label>
           <input 
