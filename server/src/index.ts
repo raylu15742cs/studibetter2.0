@@ -24,10 +24,10 @@ app.post("/topics" , createTopic)
 app.delete('/topics/:topicId', deleteTopic)
 app.put('/topics/:topicId/updateTopic' , updateTopic)
 
-app.get("/decks/:deckId", getCards)
-app.post("/decks/:deckId/cards" , createCard)
-app.delete("/decks/:deckId/cards/:cardId", deleteCard)
-app.put("/decks/:deckId/cards/:cardId", UpdateCard)
+app.get("/topics/:topicId", getCards)
+app.post("/topics/:topicId/cards" , createCard)
+app.delete("/topics/:topicId/cards/:cardId", deleteCard)
+app.put("/topics/:topicId/cards/:cardId", UpdateCard)
 
 
 mongoose
