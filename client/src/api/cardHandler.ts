@@ -1,5 +1,5 @@
 import { API_URL } from "./config";
-import { TDeck } from "./deckHandler";
+import { TDeck } from "./topicHandler";
 
 export type TCard = {
   title: string;

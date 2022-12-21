@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard, updateCard } from "./api/cardHandler";
-import { deleteTopic, TDeck, updateTopic } from "./api/deckHandler";
+import { deleteTopic, TTopic, updateTopic } from "./api/topicHandler";
 import './App.css'
 import Header from "./header";
 
 export default function Deck() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
-  const [topic, setTopic] = useState<TDeck>()
+  const [topic, setTopic] = useState<TTopic>()
   const [topicTitle, setTopicTitle] = useState("")
   const [cards, setCards] = useState<TCard[]>([])
   const [title, setTitle] = useState("");

@@ -19,10 +19,10 @@ app.use(
 )
 app.use(express.json())
 
-app.get("/decks", getTopics)
-app.post("/decks" , createTopic)
-app.delete('/decks/:deckId', deleteTopic)
-app.put('/decks/:deckId/updateTopic' , updateTopic)
+app.get("/topics", getTopics)
+app.post("/topics" , createTopic)
+app.delete('/topics/:topicId', deleteTopic)
+app.put('/topics/:topicId/updateTopic' , updateTopic)
 
 app.get("/decks/:deckId", getCards)
 app.post("/decks/:deckId/cards" , createCard)

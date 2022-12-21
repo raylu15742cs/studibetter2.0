@@ -17,7 +17,7 @@ export async function createTopic(req: Request, res: Response) {
 }
 
 export async function deleteTopic(req: Request, res: Response){
-    const topicId = req.params.deckId
+    const topicId = req.params.topicId
     const topic = await Topic.findByIdAndDelete(topicId)
     res.json(topic)
 }

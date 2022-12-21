@@ -1,23 +1,23 @@
 import React, { useEffect, useState} from "react";
 import './App.css'
 import { Link } from "react-router-dom";
-import { TDeck, createDeck, getDecks } from "./api/deckHandler";
+import { TTopic, createTopic, getTopics } from "./api/topicHandler";
 import Header from "./header";
 import { deleteCard } from "./api/cardHandler";
 
 
 
 function App() {
-  const [decks, setDecks] = useState<TDeck[]>([])
+  const [topics, setTopics] = useState<TTopic[]>([])
   const [title, setTitle] = useState("");
   const [addActive, setAddActive] = useState(false);
   const [blurApp, setBlurApp] = useState(true);
     
 
-  async function handleCreateDeck(e: React.FormEvent) {
+  async function handleCreateTopic(e: React.FormEvent) {
     e.preventDefault();
-    const deck = await createDeck(title);
-    setDecks([...decks, deck])
+    const topic = await createTopic(title);
+    setTopics([...topics, topic])
     setTitle("")
     setAddActive(false)
     setBlurApp(blurApp => !blurApp)
@@ -25,11 +25,11 @@ function App() {
 
 
   useEffect(() => {
-    async function fetchDecks() {
-      const newDecks = await getDecks();
-      setDecks(newDecks);
+    async function fetchTopics() {
+      const newTopics = await getTopics();
+      setTopics(newTopics);
     }
-    fetchDecks();
+    fetchTopics();
   }, [])
 
   return (
@@ -37,12 +37,12 @@ function App() {
       <div className={blurApp ? "" : "blur"} >
       <Header />
       <h1> Topics</h1>
-      <div className="decks">
-        {decks.map((deck) => (
+      <div className="topics">
+        {topics.map((topic) => (
           <div className="card">
-            <Link className="decktitle" to={`decks/${deck._id}`}>
-              <h1 key={deck._id}>
-                {deck.title}
+            <Link className="topictitle" to={`topics/${topic._id}`}>
+              <h1 key={topic._id}>
+                {topic.title}
                 </h1>
             </Link>
          </div>
@@ -52,11 +52,11 @@ function App() {
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp => !blurApp)}}>Add Topic</div>
       </div>
       { addActive ? (
-        <form className="cardform" onSubmit={handleCreateDeck}>
+        <form className="cardform" onSubmit={handleCreateTopic}>
           <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
-          <label htmlFor="deck-title">Deck Title</label>
+          <label htmlFor="topic-title">Topic Title</label>
           <input 
-            id="deck-title"
+            id="topic-title"
             placeholder="Topic"
             value = {title}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
@@ -66,7 +66,7 @@ function App() {
               }
             }
           />
-          <button>Create Deck</button>
+          <button>Create Topic</button>
       </form>
       ) : ""
       }
