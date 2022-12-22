@@ -17,6 +17,7 @@
   gap: 10px;
   color: black;
   margin-bottom: 40px;
+  flex-wrap: wrap;
 }
 .blur {
   filter: blur(4px);
