@@ -6,7 +6,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import './index.css'
-import Deck from './Card';
+import Card from './Card';
 import Header from './header';
 
 const router = createBrowserRouter([
@@ -15,8 +15,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/decks/:deckId",
-    element: <Deck />,
+    path: "/topics/:topicId",
+    element: <Card />,
   },
 ]);
 

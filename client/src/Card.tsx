@@ -76,7 +76,6 @@ export default function Cards() {
   useEffect(() => {
     async function fetchCards() {
       if(!topicId) return;
-      console.log(topicId)
       const newCard = await getCards(topicId);
       setCards(newCard.cards);
       setTopic(newCard.topics);

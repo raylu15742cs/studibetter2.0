@@ -11,11 +11,12 @@
   gap: 20px;
 }
 
-.decks {
+.cards, .topics{
   display: flex;
   justify-content: center;
   gap: 10px;
   color: black;
+  margin-bottom: 40px;
 }
 .blur {
   filter: blur(4px);
@@ -113,4 +114,18 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+
+.addPopup {
+  border: 1px solid black;
+  width: 150px;
+  margin: 0 auto;
+  background-color: white;
+  color: black;
+  border-radius: 999px;
+  padding: 5px;
+}
+
+.addPopup:hover{
+  background-color: #E1D9D1;
 }
