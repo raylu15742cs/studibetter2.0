@@ -144,7 +144,7 @@ export default function Cards() {
       {/* Update Card */}
       {
         updateActive ? (
-          <form className="cardform" onSubmit={(e:React.FormEvent) => {handleUpdateCard(e , currentCard!._id)}}>
+          <form className="cardform" onSubmit={(e:React.FormEvent) => {handleUpdateCard(e , currentCard!._id); setBlurApp(blurApp =>! blurApp)}}>
               <div className="closePopup" onClick={() => {setUpdateActive(false); setBlurApp(blurApp=>!blurApp)}}> x </div>
               <label> Update Card</label>
               <input 
