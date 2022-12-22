@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   text-align: center;
 }
@@ -74,27 +73,17 @@
 .Header{
   height: 5vh;
 }
-
-.show {
-  display: none;
-}
 #deletebutton {
 
   margin: auto;
 }
 
-.hidedef {
+.hidedef, .show , .edittopic{
   display: none;
 }
 
 .card:hover .hidedef , .card:hover .hideedit , .card:hover .hidedelete, .topictag:hover .edittopic {
   display: block;
-}
-.edittopic {
-  display: none;
-  height: 50px;
-  width: 100px;
-  border: 2px solid red;
 }
 
 .topictag {
