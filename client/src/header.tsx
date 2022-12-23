@@ -5,9 +5,9 @@ function Header() {
     return (
         <div className="Header">
             <Link to={'/'}><h1>StudiBetter</h1></Link>
-            <div>
-                <h1>Demo</h1>
-                <h1>Login</h1>
+            <div className="headerright">
+                <Link to={'/'}><h2>Demo</h2></Link>
+                <Link to={'/'}><h2>Login</h2></Link>
             </div>
         </div>
 
