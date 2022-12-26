@@ -30,7 +30,7 @@ function App() {
       setTopics(newTopics);
     }
     fetchTopics();
-  }, [])
+  }, [topics])
 
   return (
     <div className="App">
