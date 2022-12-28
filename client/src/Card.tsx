@@ -100,7 +100,7 @@ export default function Cards() {
         </Link>
         <div className="cards">
           {cards.map((card: TCard) => (
-              <div className={`card ${card.title}`} key={card._id}>
+              <div className={`card ${card.status}`} key={card._id}>
                 <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
                 <h1>{card.title}</h1>
                 <p className="hidedef"> Definition: {card.definition}</p>

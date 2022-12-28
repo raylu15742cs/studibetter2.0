@@ -5,7 +5,8 @@ export type TCard = {
   title: string;
   definition: string;
   topic: string[];
-  _id : string
+  _id : string;
+  status: number;
 }
 
 // Create Card
