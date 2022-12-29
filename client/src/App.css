@@ -127,7 +127,6 @@
 
 .addPopup:hover{
   background-color: #E1D9D1;
-  opacity: 0.1;
 }
 
 .status1 {
@@ -135,7 +134,7 @@
 }
 
 .status2 {
-  background-color: blue;
+  background-color: rgb(135,206,250)
 }
 
 .status3 {
