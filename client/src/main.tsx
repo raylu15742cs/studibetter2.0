@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Card from './Card';
-import Header from './header';
+import Header from './Header';
 
 const router = createBrowserRouter([
   {
