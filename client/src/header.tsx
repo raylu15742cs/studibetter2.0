@@ -7,7 +7,7 @@ function Header() {
             <Link to={'/'}><h1>StudiBetter</h1></Link>
             <div className="headerright">
                 <Link to={'/'}><h2> Demo </h2></Link>
-                <Link to={'/'}><h2> In Dev Login</h2></Link>
+                <Link to={'/'}><h2> Login</h2></Link>
             </div>
         </div>
 
