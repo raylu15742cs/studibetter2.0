@@ -8,6 +8,7 @@ import {
 import './index.css'
 import Card from './Card';
 import Header from './Header';
+import Quiz from './Quiz';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     path: "/topics/:topicId",
     element: <Card />,
   },
+  {
+    path: "/quiz",
+    element: <Quiz />,
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
