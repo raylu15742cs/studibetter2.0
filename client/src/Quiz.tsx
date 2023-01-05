@@ -5,6 +5,7 @@ export default function Quiz() {
 
     return (
         <div>
+            <Header />
             <h1>Quiz</h1>
         </div>
     )
