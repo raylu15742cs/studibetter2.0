@@ -9,7 +9,7 @@ export default function Quiz() {
     return (
         <div>
             <Header />
-            <h1>Quiz</h1>
+            <h1>{topicId}</h1>
         </div>
     )
 }
