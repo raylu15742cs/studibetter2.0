@@ -10,6 +10,7 @@ export default function Quiz() {
         <div>
             <Header />
             <h1>{topicId}</h1>
+            <h3>{quizcount} {score}</h3>
         </div>
     )
 }
