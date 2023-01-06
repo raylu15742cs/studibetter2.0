@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <Card />,
   },
   {
-    path: "/quiz",
+    path: "topics/:topicId/quiz",
     element: <Quiz />,
   }
 ]);
