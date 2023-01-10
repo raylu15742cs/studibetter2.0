@@ -27,6 +27,7 @@ export default function Quiz() {
             <h3>Question #{quizcount}</h3>
             <h3>Score #{score}</h3>
             <p> How to build you?</p>
+            <h3>You are my bane</h3>
 
         </div>
     )
