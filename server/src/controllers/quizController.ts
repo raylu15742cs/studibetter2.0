@@ -8,3 +8,7 @@ export async function createQuiz(req: Request, res: Response) {
 export async function updateScore(req: Request, res: Response) {
     
 }
+
+export async function checkSelection(req: Request, res: Response) {
+    
+}
