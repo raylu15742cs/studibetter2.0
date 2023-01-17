@@ -29,6 +29,8 @@ app.post("/topics/:topicId/cards" , createCard)
 app.delete("/topics/:topicId/cards/:cardId", deleteCard)
 app.put("/topics/:topicId/cards/:cardId", UpdateCard)
 
+// Quiz functions
+
 
 mongoose
     .connect(process.env.MONGO_URL!).then(() => {
