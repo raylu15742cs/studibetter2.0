@@ -98,10 +98,9 @@ export default function Cards() {
         <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
-        <div className="cardset">
-          <Link to={`/topics/${topicId}/quiz`}><h2>Quiz</h2></Link>
-          <div className="cards">
-                      {cards.map((card: TCard) => (
+        <Link to={`/topics/${topicId}/quiz`}><h2>Quiz</h2></Link>
+        <div className="cards">
+          {cards.map((card: TCard) => (
               <div className={`card status${card.status}`} key={card._id}>
                 <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
                 <h1>{card.title}</h1>
@@ -111,7 +110,6 @@ export default function Cards() {
     
           ))
           }
-          </div>
         </div>
       </div>
       
