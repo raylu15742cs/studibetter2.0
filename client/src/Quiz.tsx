@@ -25,7 +25,6 @@ export default function Quiz() {
             <Header />
             <h1>{topic?.title}</h1>
             <h3>Question #{quizcount} Score: {score}</h3>
-
         </div>
     )
 }
