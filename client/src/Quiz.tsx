@@ -9,6 +9,14 @@ export default function Quiz() {
     const [cards, setCards] = useState<TCard[]>([])
     const [topic, setTopic] = useState<TTopic>()
     let { topicId } = useParams();
+    const [status, setStatus] = useState("")
+    async function checkLength() {
+      if (cards.length > 10) {
+        setStatus("Big")
+      } else {
+        setStatus("Small")
+      }
+    }
 
     useEffect(() => {
     async function fetchCards() {
@@ -18,6 +26,7 @@ export default function Quiz() {
       setTopic(newCard.topics);
     }
     fetchCards();
+    checkLength();
   }, [topicId , cards])
 
     return (
@@ -25,6 +34,7 @@ export default function Quiz() {
             <Header />
             <h1>{topic?.title}</h1>
             <h3>Question #{quizcount} Score: {score}</h3>
+            <h3>{status}</h3>
         </div>
     )
 }
