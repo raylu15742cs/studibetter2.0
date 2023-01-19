@@ -10,13 +10,17 @@
   gap: 20px;
 }
 
-.cards, .topics{
+.cardset, .cards, .topics{
   display: flex;
   justify-content: center;
   gap: 10px;
   color: black;
   margin-bottom: 40px;
   flex-wrap: wrap;
+}
+
+.cards {
+  flex-direction: column
 }
 .blur {
   filter: blur(4px);
