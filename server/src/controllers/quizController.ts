@@ -6,7 +6,7 @@ import Topic from "../models/Topic";
 export async function getQuiz(req: Request, res: Response) {
     const topicId = req.params.topicId
     const topics = await Topic.findById(topicId)
-    const card = await Card.findOne({topic: topicId})
+    const card = await Card.findOne({topic: topics})
     res.json(card)
 }   
 
