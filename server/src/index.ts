@@ -8,6 +8,7 @@ dotenv.config()
 import Topic from "./models/Topic"
 import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/topicController";
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
+import { getQuiz } from "./controllers/quizController";
 
 const PORT = 5003;
 
@@ -30,6 +31,7 @@ app.delete("/topics/:topicId/cards/:cardId", deleteCard)
 app.put("/topics/:topicId/cards/:cardId", UpdateCard)
 
 // Quiz functions
+app.get("/topics/:topicId/quiz", getQuiz)
 
 
 mongoose
