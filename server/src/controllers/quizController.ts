@@ -2,8 +2,9 @@ import express, {Request, Response} from "express";
 
 
 export async function getQuiz(req: Request, res: Response) {
-
-}
+    const topicId = req.params.topicId
+    console.log(req)
+}   
 
 export async function updateScore(req: Request, res: Response) {
     
