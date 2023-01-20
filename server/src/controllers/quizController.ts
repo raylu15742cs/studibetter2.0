@@ -1,9 +1,11 @@
 import express, {Request, Response} from "express";
+import Card from "../models/Card";
 
 
 export async function getQuiz(req: Request, res: Response) {
     const topicId = req.params.topicId
-    console.log(req)
+    const card = await Card.findOne({topic: topicId})
+    res.json(card)
 }   
 
 export async function updateScore(req: Request, res: Response) {

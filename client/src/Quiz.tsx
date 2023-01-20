@@ -10,7 +10,7 @@ export default function Quiz() {
     let { topicId } = useParams();
 
     useEffect(() => {
-      getQuiz(topicId!);
+      const card = getQuiz(topicId!);
     })
     return (
         <div>
