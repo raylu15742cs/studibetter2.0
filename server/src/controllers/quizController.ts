@@ -2,12 +2,13 @@ import express, {Request, Response} from "express";
 import Card from "../models/Card";
 import Topic from "../models/Topic";
 
+// convert to general quiz
 
 export async function getQuiz(req: Request, res: Response) {
     const topicId = req.params.topicId
     const topics = await Topic.findById(topicId)
     const card = await Card.findOne({topic: topics})
-    res.json(card)
+    res.json({card})
 }   
 
 export async function updateScore(req: Request, res: Response) {
