@@ -24,7 +24,7 @@ export default function Quiz() {
         <div>
             <Header />
             <h1> Quiz </h1>
-            <div>
+            <div className="cards">
               {cards.map((card: TCard) => (
               <div className={`card status${card.status}`} key={card._id}>
                 <h1>{card.title}</h1>
