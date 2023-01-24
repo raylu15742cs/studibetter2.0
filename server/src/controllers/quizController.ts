@@ -2,8 +2,7 @@ import express, {Request, Response} from "express";
 import Card from "../models/Card";
 import Topic from "../models/Topic";
 
-// convert to general quiz
-// set max size
+// Gets a random 10 but not filtered yet
 export async function getQuiz(req: Request, res: Response) {
     const topicId = req.params.topicId
     const topics = await Topic.findById(topicId)
