@@ -8,17 +8,32 @@ import Header from "./Header";
 export default function Quiz() {
 
     let { topicId } = useParams();
-    async function startQuiz(){
-      const card = await getQuiz(topicId!);
-      console.log(card)
-    }
-    startQuiz()
+    const [cards, setCards] = useState<TCard[]>([])
+
     useEffect(() => {
-    })
+      async function startQuiz(){
+        const card = await getQuiz(topicId!);
+        setCards(card.card)
+        console.log(cards)
+      }
+      startQuiz();
+    }, [])
+
+    console.log(cards)
     return (
         <div>
             <Header />
             <h1> Quiz </h1>
+            <div>
+              {cards.map((card: TCard) => (
+              <div className={`card status${card.status}`} key={card._id}>
+                <h1>{card.title}</h1>
+                <p className="hidedef"> Definition: {card.definition}</p>
+              </div>
+    
+          ))
+          }
+            </div>
         </div>
     )
 }
