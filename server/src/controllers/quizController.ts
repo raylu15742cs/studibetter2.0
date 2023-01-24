@@ -9,8 +9,7 @@ export async function getQuiz(req: Request, res: Response) {
     const topics = await Topic.findById(topicId)
     const card = await Card.aggregate([{
       $match: { topic: topics!._id }
-   }, { $sample: { size: 3 }}])
-    console.log(card)
+   }, { $sample: { size: 10 }}])
     res.json({card})
 }   
 

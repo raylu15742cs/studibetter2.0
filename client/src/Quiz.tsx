@@ -8,9 +8,12 @@ import Header from "./Header";
 export default function Quiz() {
 
     let { topicId } = useParams();
-
+    async function startQuiz(){
+      const card = await getQuiz(topicId!);
+      console.log(card)
+    }
+    startQuiz()
     useEffect(() => {
-      const card = getQuiz(topicId!);
     })
     return (
         <div>
