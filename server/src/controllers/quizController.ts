@@ -12,6 +12,11 @@ export async function getQuiz(req: Request, res: Response) {
     res.json({card})
 }   
 
+// Next Version will filter base on status
+export async function getQuizF(req: Request, res: Response) {
+    
+}
+
 export async function updateScore(req: Request, res: Response) {
     
 }
