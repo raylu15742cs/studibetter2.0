@@ -13,8 +13,8 @@ export default function Quiz() {
     useEffect(() => {
       async function startQuiz(){
         const card = await getQuiz(topicId!);
-        setCards(card.card)
-        console.log(cards)
+        this.setState({cards card.card}, ()=> console.log(cards[0]),)
+        console.log(cards[0])
       }
       startQuiz();
     }, [])
