@@ -18,8 +18,6 @@ export default function Quiz() {
       }
       startQuiz();
     }, [])
-
-    console.log(cards)
     return (
         <div>
             <Header />
@@ -30,9 +28,9 @@ export default function Quiz() {
                 <h1>{card.title}</h1>
                 <p className="hidedef"> Definition: {card.definition}</p>
               </div>
-    
-          ))
-          }
+                ))
+              }
+              
             </div>
         </div>
     )
