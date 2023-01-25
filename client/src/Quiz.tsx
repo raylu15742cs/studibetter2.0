@@ -16,22 +16,17 @@ export default function Quiz() {
         setCards(card.card)
       }
       startQuiz();
-      console.log("once")
     }, [])
+    useEffect(()=>{
+      console.log(cards)
+    }, [cards])
     return (
         <div>
             <Header />
             <h1> Quiz </h1>
-            <div className="cards">
-              {cards.map((card: TCard) => (
-              <div className={`card status${card.status}`} key={card._id}>
-                <h1>{card.title}</h1>
-                <p className="hidedef"> Definition: {card.definition}</p>
-              </div>
-                ))
-              }
-              
-            </div>
+            <h2>Term</h2>
+            <p>Def 1</p>
+            <p>Def 2</p>
         </div>
     )
 }
