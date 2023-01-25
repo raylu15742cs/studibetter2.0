@@ -27,6 +27,8 @@ export default function Quiz() {
             <h2>Term</h2>
             <p>Def 1</p>
             <p>Def 2</p>
+            <p>Def 3</p>
+            <p>Def 4</p>
         </div>
     )
 }
