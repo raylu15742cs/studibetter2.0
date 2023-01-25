@@ -16,6 +16,7 @@ export default function Quiz() {
         setCards(card.card)
       }
       startQuiz();
+      console.log("once")
     }, [])
     return (
         <div>
