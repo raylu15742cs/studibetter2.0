@@ -17,10 +17,6 @@ export default function Quiz() {
       }
       startQuiz();
     }, [])
-
-   useEffect(() => {
-      console.log(cards[0]);
-  },[cards]); 
     return (
         <div>
             <Header />
