@@ -13,7 +13,7 @@ export default function Quiz() {
 
     async function changeScore() {
       if(def[0] == "0") {
-        setDefinitions(["change","to","new","definition"])      
+        setDefinitions(["3","2","1","0"])      
       } else {
         setDefinitions(["0","1","2","3"])
       }      
