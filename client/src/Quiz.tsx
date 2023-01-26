@@ -10,8 +10,8 @@ export default function Quiz() {
     let { topicId } = useParams();
     const [cards, setCards] = useState<TCard[]>([])
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
-    const [currentTerm, setCurrentTerm] = useState("Current Term")
-    const [count , setCount] = useState(0)
+    const [currentTerm, setCurrentTerm] = useState('')
+    const [count , setCount] = useState(1)
 
     async function currentCard() {
       if(def[0] == "0") {
@@ -21,7 +21,7 @@ export default function Quiz() {
       }
       console.log(count)
       setCurrentTerm(cards[count].title)
-      setCount(count+1)     
+      setCount(count+1)   
     }
 
     async function checkSelection(){
@@ -36,7 +36,9 @@ export default function Quiz() {
       startQuiz();
     }, [])
     useEffect(()=>{
-      console.log(cards)
+      if(cards[0] != undefined) {
+        setCurrentTerm(cards[0].title)
+      }
     }, [cards])
     return (
         <div>
