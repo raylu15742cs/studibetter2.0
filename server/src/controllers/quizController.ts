@@ -14,7 +14,12 @@ export async function getQuiz(req: Request, res: Response) {
 
 // Generate the definitions for each term
 export async function getDefinitions(req: Request, res: Response) {
-  
+  const topicId = req.params.topicId
+    const topics = await Topic.findById(topicId)
+    const card = await Card.aggregate([{
+      $match: { topic: topics!._id }
+   }, { $sample: { size: 10 }}])
+    res.json({card})
 }
 
 // Next Version will filter base on status
