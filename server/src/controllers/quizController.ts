@@ -10,7 +10,12 @@ export async function getQuiz(req: Request, res: Response) {
       $match: { topic: topics!._id }
    }, { $sample: { size: 10 }}])
     res.json({card})
-}   
+}  
+
+// Generate the definitions for each term
+export async function getDefinitions(req: Request, res: Response) {
+  
+}
 
 // Next Version will filter base on status
 export async function getQuizF(req: Request, res: Response) {
