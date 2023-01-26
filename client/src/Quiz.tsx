@@ -10,13 +10,22 @@ export default function Quiz() {
     let { topicId } = useParams();
     const [cards, setCards] = useState<TCard[]>([])
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
+    const [currentTerm, setCurrentTerm] = useState("Current Term")
+    const [count , setCount] = useState(0)
 
-    async function changeScore() {
+    async function currentCard() {
       if(def[0] == "0") {
-        setDefinitions(["3","2","1","0"])      
+         setDefinitions([cards[0].definition,cards[1].definition,cards[2].definition,cards[3].definition])
       } else {
-        setDefinitions(["0","1","2","3"])
-      }      
+        setDefinitions(["0","1","2","3"])      
+      }
+      console.log(count)
+      setCurrentTerm(cards[count].title)
+      setCount(count+1)     
+    }
+
+    async function checkSelection(){
+
     }
  
     useEffect(() => {
@@ -33,11 +42,11 @@ export default function Quiz() {
         <div>
             <Header />
             <h1> Quiz </h1>
-            <h2>Term</h2>
-            <button onClick={changeScore}>{def[0]}</button>
-            <button onClick={changeScore}>{def[1]}</button>
-            <button onClick={changeScore}>{def[2]}</button>
-            <button onClick={changeScore}>{def[3]}</button>
+            <h2>{currentTerm}</h2>
+            <button onClick={currentCard}>{def[0]}</button>
+            <button onClick={currentCard}>{def[1]}</button>
+            <button onClick={currentCard}>{def[2]}</button>
+            <button onClick={currentCard}>{def[3]}</button>
         </div>
     )
 }
