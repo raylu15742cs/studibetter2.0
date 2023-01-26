@@ -23,7 +23,7 @@ export default function Quiz() {
       setCurrentTerm(cards[count].title)
       setCount(count+1)   
     }
-
+    // will check selection and call
     async function checkSelection(){
 
     }
