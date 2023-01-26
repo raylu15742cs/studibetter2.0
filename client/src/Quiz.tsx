@@ -12,7 +12,11 @@ export default function Quiz() {
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
 
     async function changeScore() {
-      setDefinitions(["change","to","new","definition"])      
+      if(def[0] == "0") {
+        setDefinitions(["change","to","new","definition"])      
+      } else {
+        setDefinitions(["0","1","2","3"])
+      }      
     }
  
     useEffect(() => {
@@ -31,9 +35,9 @@ export default function Quiz() {
             <h1> Quiz </h1>
             <h2>Term</h2>
             <button onClick={changeScore}>{def[0]}</button>
-            <button onClick={changeScore}>{def[0]}</button>
-            <button onClick={changeScore}>{def[0]}</button>
-            <button onClick={changeScore}>{def[0]}</button>
+            <button onClick={changeScore}>{def[1]}</button>
+            <button onClick={changeScore}>{def[2]}</button>
+            <button onClick={changeScore}>{def[3]}</button>
         </div>
     )
 }
