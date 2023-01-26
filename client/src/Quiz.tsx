@@ -44,7 +44,7 @@ export default function Quiz() {
         <div>
             <Header />
             <h1> Quiz </h1>
-            <h2>Count {count}/10</h2>
+            <h2> {currentTerm} Count {count}/10</h2>
             <button onClick={currentCard}>{def[0]}</button>
             <button onClick={currentCard}>{def[1]}</button>
             <button onClick={currentCard}>{def[2]}</button>
