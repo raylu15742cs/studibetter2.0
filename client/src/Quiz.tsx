@@ -31,9 +31,9 @@ export default function Quiz() {
             <h1> Quiz </h1>
             <h2>Term</h2>
             <p>{def[0]}</p>
-            <p>{def[0]}</p>
-            <p>{def[0]}</p>
-            <p>{def[0]}</p>
+            <p>{def[1]}</p>
+            <p>{def[2]}</p>
+            <p>{def[3]}</p>
             <button onClick={changeScore}>change</button>
         </div>
     )
