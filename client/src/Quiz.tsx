@@ -9,7 +9,12 @@ export default function Quiz() {
 
     let { topicId } = useParams();
     const [cards, setCards] = useState<TCard[]>([])
+    const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
 
+    async function changeScore() {
+      setDefinitions(["2","2","2","2"])      
+    }
+ 
     useEffect(() => {
       async function startQuiz(){
         const card = await getQuiz(topicId!);
@@ -25,7 +30,8 @@ export default function Quiz() {
             <Header />
             <h1> Quiz </h1>
             <h2>Term</h2>
-            <p>Def 1</p>
+            <p>{def[0]}</p>
+            <button onClick={changeScore}>change</button>
             <p>Def 2</p>
             <p>Def 3</p>
             <p>Def 4</p>
