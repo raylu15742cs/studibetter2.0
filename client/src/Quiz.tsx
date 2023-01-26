@@ -30,14 +30,10 @@ export default function Quiz() {
             <Header />
             <h1> Quiz </h1>
             <h2>Term</h2>
-            <button onClick={changeScore}>change</button>
-            <button onClick={changeScore}>change</button>
-            <button onClick={changeScore}>change</button>
-            <button onClick={changeScore}>change</button>
-            <p>{def[0]}</p>
-            <p>{def[1]}</p>
-            <p>{def[2]}</p>
-            <p>{def[3]}</p>
+            <button onClick={changeScore}>{def[0]}</button>
+            <button onClick={changeScore}>{def[0]}</button>
+            <button onClick={changeScore}>{def[0]}</button>
+            <button onClick={changeScore}>{def[0]}</button>
         </div>
     )
 }
