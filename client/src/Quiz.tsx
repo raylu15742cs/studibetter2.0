@@ -12,7 +12,7 @@ export default function Quiz() {
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
 
     async function changeScore() {
-      setDefinitions(["2","2","2","2"])      
+      setDefinitions(["change","to","new","definition"])      
     }
  
     useEffect(() => {
