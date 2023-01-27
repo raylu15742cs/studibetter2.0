@@ -11,21 +11,15 @@ export default function Quiz() {
     const [cards, setCards] = useState<TCard[]>([])
     const [tests, setTests] = useState<TCard[]>([])
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
-    const [currentTerm, setCurrentTerm] = useState('')
+    const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
 
     async function currentCard() {
-      if(def[0] == "0") {
-         setDefinitions([cards[0].definition,cards[1].definition,cards[2].definition,cards[3].definition])
-      } else {
-        setDefinitions(["0","1","2","3"])      
-      }
       console.log(count)
-      setCurrentTerm(cards[count].title)
-      setCount(count+1)
-      const test = await getDefinitions(topicId!, currentTerm)
+      const test = await getDefinitions(topicId!)
       setTests(test.card)
-      console.log(tests[0].definition)
+      setCurrentTerm(cards[count])
+      setCount(count+1)
     }
     // will check selection and call
     async function checkSelection(){
@@ -36,19 +30,33 @@ export default function Quiz() {
       async function startQuiz(){
         const card = await getQuiz(topicId!);
         setCards(card.card)
+        const test = await getDefinitions(topicId!)
+        setTests(test.card)
       }
       startQuiz();
     }, [])
     useEffect(()=>{
       if(cards[0] != undefined) {
-        setCurrentTerm(cards[0].title)
+        setCurrentTerm(cards[0])
       }
     }, [cards])
+    useEffect(()=> {
+      console.log(tests)
+      if(tests[0] != undefined) {
+        if(tests[0].definition != currentTerm!.definition && tests[1].definition != currentTerm!.definition && tests[2].definition != currentTerm!.definition && tests[3].definition != currentTerm!.definition) {
+          const index = Math.floor(Math.random() * 3)
+          //tests[index].definition = currentTerm!.definition
+          tests[index].definition = "change"
+          setDefinitions([tests[0].definition,tests[1].definition,tests[2].definition,tests[3].definition])
+        } else {setDefinitions([tests[0].definition,tests[1].definition,tests[2].definition,tests[3].definition])
+        }
+      }
+    }, [tests])
     return (
         <div>
             <Header />
             <h1> Quiz </h1>
-            <h2> {currentTerm} Count {count}/10</h2>
+            <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2>
             <button onClick={currentCard}>{def[0]}</button>
             <button onClick={currentCard}>{def[1]}</button>
             <button onClick={currentCard}>{def[2]}</button>
