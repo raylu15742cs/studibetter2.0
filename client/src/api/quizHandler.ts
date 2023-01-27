@@ -14,6 +14,16 @@ export async function getDefinitions(topicId:string){
 }
 
 export async function updateScore(topicId: string, currentTerm: string, result: boolean) {
-    const response = await fetch(`${API_URL}/topics/${topicId}/quiz/${currentTerm}/${result}`)
+    const response = await fetch(`${API_URL}/topics/${topicId}/quiz/${currentTerm}/${result}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body:JSON.stringify({
+        currentTerm,
+        result,
+        topic: topicId
+      })
+    });
     return response.json()
 }

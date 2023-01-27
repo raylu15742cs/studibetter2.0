@@ -31,8 +31,13 @@ export async function updateScore(req: Request, res: Response) {
   const topicId = req.params.topicId
   const term = req.params.currentTerm
   const result = req.params.result
-  const card = await Card.findANdModify
-  res.json(term)
+  if (result == "true") {
+    const card = await Card.findOneAndUpdate({topic: topicId , title: term}, {$inc: {status: 1}})
+    res.json(card)
+  } else {
+    const card = await Card.findOneAndUpdate({topic: topicId , title: term}, {$inc: {status: -1}})
+    res.json(card)
+  }
     
 }
 // Function that handles each selection
