@@ -45,8 +45,7 @@ export default function Quiz() {
       if(tests[0] != undefined) {
         if(tests[0].definition != currentTerm!.definition && tests[1].definition != currentTerm!.definition && tests[2].definition != currentTerm!.definition && tests[3].definition != currentTerm!.definition) {
           const index = Math.floor(Math.random() * 3)
-          //tests[index].definition = currentTerm!.definition
-          tests[index].definition = "change"
+          tests[index].definition = currentTerm!.definition
           setDefinitions([tests[0].definition,tests[1].definition,tests[2].definition,tests[3].definition])
         } else {setDefinitions([tests[0].definition,tests[1].definition,tests[2].definition,tests[3].definition])
         }
