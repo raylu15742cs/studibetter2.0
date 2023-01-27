@@ -23,9 +23,9 @@ export default function Quiz() {
       console.log(count)
       setCurrentTerm(cards[count].title)
       setCount(count+1)
-      const test = await getDefinitions(topicId!)
-      setTests(test)
-      console.log(tests)
+      const test = await getDefinitions(topicId!, currentTerm)
+      setTests(test.card)
+      console.log(tests[0].definition)
     }
     // will check selection and call
     async function checkSelection(){
