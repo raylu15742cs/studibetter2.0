@@ -28,6 +28,10 @@ export async function getQuizF(req: Request, res: Response) {
 }
 
 export async function updateScore(req: Request, res: Response) {
+  const topicId = req.params.topicId
+  const term = req.params.currentTerm
+  const result = req.params.result
+  res.json(term)
     
 }
 // Function that handles each selection

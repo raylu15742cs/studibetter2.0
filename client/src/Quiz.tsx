@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
-import { getDefinitions, getQuiz } from "./api/quizHandler";
+import { getDefinitions, getQuiz, updateScore } from "./api/quizHandler";
 import { TTopic } from "./api/topicHandler";
 import Header from "./Header";
 
@@ -28,6 +28,7 @@ export default function Quiz() {
       } else {
         console.log("wrong")
       }
+      const updateresults = await updateScore(topicId!, currentTerm!.title , true)
 
     }
  
