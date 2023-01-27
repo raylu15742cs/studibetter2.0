@@ -28,9 +28,9 @@ export default function Quiz() {
     // will check selection and call
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
-        const updateresults = await updateScore(topicId!, currentTerm!.title , true)
+        await updateScore(topicId!, currentTerm!.title , true)
       } else {
-        const updateresults = await updateScore(topicId!, currentTerm!.title , false)
+        await updateScore(topicId!, currentTerm!.title , false)
       }
 
     }
