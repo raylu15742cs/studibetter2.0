@@ -33,7 +33,7 @@ app.put("/topics/:topicId/cards/:cardId", UpdateCard)
 // Quiz functions
 app.get("/topics/:topicId/quiz", getQuiz)
 app.get("/topics/:topicId/quiz/terms", getDefinitions)
-app.post("/topics/:topicId/quiz/:currentTerms/:result", updateScore)
+app.post("/topics/:topicId/quiz/:currentTerm/:result", updateScore)
 
 
 mongoose
