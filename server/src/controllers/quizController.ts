@@ -31,14 +31,16 @@ export async function updateScore(req: Request, res: Response) {
   const topicId = req.params.topicId
   const term = req.params.currentTerm
   const result = req.params.result
-  if (result == "true") {
+  const currentStatus = await Card.find({topic: topicId , title: term})
+  if(currentStatus[0].status != 4 && result =="true") {
     const card = await Card.findOneAndUpdate({topic: topicId , title: term}, {$inc: {status: 1}})
-    res.json(card)
-  } else {
+      res.json(card)
+  } else if (currentStatus[0].status != 0 && result =="false") {
     const card = await Card.findOneAndUpdate({topic: topicId , title: term}, {$inc: {status: -1}})
-    res.json(card)
+      res.json(card)
+  } else {
+    res.json(currentStatus)
   }
-    
 }
 // Function that handles each selection
 export async function checkSelection(req: Request, res: Response) {

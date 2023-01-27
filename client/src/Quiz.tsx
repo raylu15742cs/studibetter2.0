@@ -24,11 +24,10 @@ export default function Quiz() {
     // will check selection and call
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
-        console.log("correct")
+        const updateresults = await updateScore(topicId!, currentTerm!.title , true)
       } else {
-        console.log("wrong")
+        const updateresults = await updateScore(topicId!, currentTerm!.title , false)
       }
-      const updateresults = await updateScore(topicId!, currentTerm!.title , true)
 
     }
  
