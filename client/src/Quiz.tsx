@@ -10,19 +10,24 @@ export default function Quiz() {
     let { topicId } = useParams();
     const [cards, setCards] = useState<TCard[]>([])
     const [tests, setTests] = useState<TCard[]>([])
-    const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
+    const [def , setDefinitions] = useState<string[]>(["0","1","2","3"])
     const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
 
-    async function currentCard() {
-      console.log(count)
+    async function currentCard(choice:number) {
       const test = await getDefinitions(topicId!)
       setTests(test.card)
       setCurrentTerm(cards[count])
       setCount(count+1)
+      checkSelection(choice)
     }
     // will check selection and call
-    async function checkSelection(){
+    async function checkSelection(choice:number){
+      if(currentTerm!.definition == def[choice]) {
+        console.log("correct")
+      } else {
+        console.log("wrong")
+      }
 
     }
  
@@ -41,7 +46,6 @@ export default function Quiz() {
       }
     }, [cards])
     useEffect(()=> {
-      console.log(tests)
       if(tests[0] != undefined) {
         if(tests[0].definition != currentTerm!.definition && tests[1].definition != currentTerm!.definition && tests[2].definition != currentTerm!.definition && tests[3].definition != currentTerm!.definition) {
           const index = Math.floor(Math.random() * 3)
@@ -56,10 +60,10 @@ export default function Quiz() {
             <Header />
             <h1> Quiz </h1>
             <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2>
-            <button onClick={currentCard}>{def[0]}</button>
-            <button onClick={currentCard}>{def[1]}</button>
-            <button onClick={currentCard}>{def[2]}</button>
-            <button onClick={currentCard}>{def[3]}</button>
+            <button onClick={() => currentCard(0)}>{def[0]}</button>
+            <button onClick={() => currentCard(1)}>{def[1]}</button>
+            <button onClick={() => currentCard(2)}>{def[2]}</button>
+            <button onClick={() => currentCard(3)}>{def[3]}</button>
         </div>
     )
 }
