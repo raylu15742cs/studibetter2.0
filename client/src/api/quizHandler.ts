@@ -7,3 +7,8 @@ export async function getQuiz(topicId:string){
     const response = await fetch(`${API_URL}/topics/${topicId}/quiz`)
     return response.json()
 }
+
+export async function getDefinitions(topicId:string){
+    const response = await fetch(`${API_URL}/topics/${topicId}/quiz`)
+    return response.json()
+}

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Link, useParams} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
-import { getQuiz } from "./api/quizHandler";
+import { getDefinitions, getQuiz } from "./api/quizHandler";
 import { TTopic } from "./api/topicHandler";
 import Header from "./Header";
 
@@ -9,6 +9,7 @@ export default function Quiz() {
 
     let { topicId } = useParams();
     const [cards, setCards] = useState<TCard[]>([])
+    const [tests, setTests] = useState<TCard[]>([])
     const [def , setDefinitions] = useState<String[]>(["0","1","2","3"])
     const [currentTerm, setCurrentTerm] = useState('')
     const [count , setCount] = useState(1)
@@ -21,7 +22,10 @@ export default function Quiz() {
       }
       console.log(count)
       setCurrentTerm(cards[count].title)
-      setCount(count+1)   
+      setCount(count+1)
+      const test = await getDefinitions(topicId!)
+      setTests(test)
+      console.log(tests)
     }
     // will check selection and call
     async function checkSelection(){
