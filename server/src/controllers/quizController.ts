@@ -40,6 +40,7 @@ export async function updateScore(req: Request, res: Response) {
       res.json(card)
   } else {
     res.json(currentStatus)
+    console.log("no change")
   }
 }
 // Function that handles each selection

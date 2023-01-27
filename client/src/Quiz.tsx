@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import { Link, useParams} from "react-router-dom";
+import React, {useState, useEffect ,useCallback} from "react";
+import { Link, useParams, redirect, useNavigate} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
 import { getDefinitions, getQuiz, updateScore } from "./api/quizHandler";
 import { TTopic } from "./api/topicHandler";
@@ -8,19 +8,23 @@ import Header from "./Header";
 export default function Quiz() {
 
     let { topicId } = useParams();
+    const navigate = useNavigate();
     const [cards, setCards] = useState<TCard[]>([])
     const [tests, setTests] = useState<TCard[]>([])
     const [def , setDefinitions] = useState<string[]>(["0","1","2","3"])
     const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
+    const [altcount , setAltcount] = useState(0)
 
     async function currentCard(choice:number) {
+      setCount(count+1)
+      setAltcount(altcount+1)
       const test = await getDefinitions(topicId!)
       setTests(test.card)
       setCurrentTerm(cards[count])
-      setCount(count+1)
       checkSelection(choice)
     }
+
     // will check selection and call
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
@@ -55,6 +59,11 @@ export default function Quiz() {
         }
       }
     }, [tests])
+     useEffect(() => {
+    if (altcount == 10) {
+      navigate(`/topics/${topicId}`);
+    }
+  }, [count]);
     return (
         <div>
             <Header />
