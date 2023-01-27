@@ -18,7 +18,7 @@ export async function getDefinitions(req: Request, res: Response) {
     const topics = await Topic.findById(topicId)
     const card = await Card.aggregate([{
       $match: { topic: topics!._id }
-   }, { $sample: { size: 10 }}])
+   }, { $sample: { size: 4 }}])
     res.json({card})
 }
 
