@@ -10,7 +10,7 @@ import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
 import { getDefinitions, getQuiz, updateScore } from "./controllers/quizController";
 
-const path = require('path')
+const path = require("path")
 
 const PORT = 4001;
 
