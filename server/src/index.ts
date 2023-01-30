@@ -38,10 +38,10 @@ app.get("/topics/:topicId/quiz/terms", getDefinitions)
 app.post("/topics/:topicId/quiz/:currentTerm/:result", updateScore)
 
 // Making Build Folder as Public 
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
 });
 
 
