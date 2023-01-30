@@ -10,6 +10,8 @@ import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
 import { getDefinitions, getQuiz, updateScore } from "./controllers/quizController";
 
+const path = require('path')
+
 const PORT = 4001;
 
 const app = express()
@@ -34,6 +36,13 @@ app.put("/topics/:topicId/cards/:cardId", UpdateCard)
 app.get("/topics/:topicId/quiz", getQuiz)
 app.get("/topics/:topicId/quiz/terms", getDefinitions)
 app.post("/topics/:topicId/quiz/:currentTerm/:result", updateScore)
+
+// Making Build Folder as Public 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 
 mongoose
