@@ -7,6 +7,7 @@ import Header from "./Header";
 
 export default function Cards() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
+  const [isQuiz, setIsQuiz] = useState<Boolean>(false)
   const [topic, setTopic] = useState<TTopic>()
   const [topicTitle, setTopicTitle] = useState("")
   const [cards, setCards] = useState<TCard[]>([])
@@ -39,6 +40,11 @@ export default function Cards() {
       setIsEmpty(true)
     } else {
       setIsEmpty(false)
+    }
+    if (cards.length >= 10) {
+      setIsQuiz(false)
+    } else {
+      setIsQuiz(true)
     }
   }
   async function handleDeleteTopic(topicId: string) {
@@ -98,7 +104,7 @@ export default function Cards() {
         <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
-        <Link to={`/topics/${topicId}/quiz`}><h2 className={isEmpty ? "show" : ""}>Quiz</h2></Link>
+        <Link to={`/topics/${topicId}/quiz`}><h2 className={isQuiz ? "show" : ""}>Quiz</h2></Link>
         <div className="cards">
           {cards.map((card: TCard) => (
               <div className={`card status${card.status}`} key={card._id}>
