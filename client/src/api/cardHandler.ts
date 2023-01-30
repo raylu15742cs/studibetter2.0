@@ -11,7 +11,7 @@ export type TCard = {
 
 // Create Card
 export async function createCard(topicId: string , title: string, definition: string): Promise<TCard>{
-    const response = await fetch(`${API_URL}/topics/${topicId}/cards`, {
+    const response = await fetch(`/topics/${topicId}/cards`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -26,14 +26,14 @@ export async function createCard(topicId: string , title: string, definition: st
 }
 // Get Cards from specific topic
 export async function getCards(topicId: string){
-    const response = await fetch(`${API_URL}/topics/${topicId}`)
+    const response = await fetch(`/topics/${topicId}`)
     return response.json()
 }
 
 
 // Delete Card
 export async function deleteCard(topicId: string ,cardId: string): Promise<TTopic> {
-    const response = await fetch(`${API_URL}/topics/${topicId}/cards/${cardId}`, {
+    const response = await fetch(`/topics/${topicId}/cards/${cardId}`, {
       method: "DELETE",
     })
     return response.json()
@@ -42,7 +42,7 @@ export async function deleteCard(topicId: string ,cardId: string): Promise<TTopi
 // Update Card
 
 export async function updateCard( topicId: string, cardId: string, title: string, definition:string) {
-    const response = await fetch(`${API_URL}/topics/${topicId}/cards/${cardId}`, {
+    const response = await fetch(`/topics/${topicId}/cards/${cardId}`, {
         method: "PUT",
         headers: {
         "Content-Type": "application/json",
