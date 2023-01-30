@@ -10,7 +10,7 @@ import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
 import { getDefinitions, getQuiz, updateScore } from "./controllers/quizController";
 
-const PORT = 5003;
+const PORT = 4001;
 
 const app = express()
 app.use(
