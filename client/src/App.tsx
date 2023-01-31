@@ -2,7 +2,7 @@ import React, { useEffect, useState} from "react";
 import './App.css'
 import { Link } from "react-router-dom";
 import { TTopic, createTopic, getTopics } from "./api/topicHandler";
-import Header from "./Header";
+//import Header from "./Header";
 import { deleteCard } from "./api/cardHandler";
 
 
@@ -35,7 +35,7 @@ function App() {
   return (
     <div className="App">
       <div className={blurApp ? "" : "blur"} >
-      <Header />
+      {/* <Header /> */}
       <h1> Topics</h1>
       <div className="topics">
         {topics.map((topic) => (

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard, updateCard } from "./api/cardHandler";
 import { deleteTopic, TTopic, updateTopic } from "./api/topicHandler";
 import './App.css'
-import Header from "./Header";
+//import Header from "./Header";
 
 export default function Cards() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
@@ -96,7 +96,7 @@ export default function Cards() {
   return (
     <div>
       <div className={blurApp ? "app" : "blur app"}>
-        <Header />
+        {/* <Header /> */}
         <div className="topictag">
           <h1>{topic?.title}</h1>
           <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
