@@ -12,7 +12,7 @@ import { getDefinitions, getQuiz, updateScore } from "./controllers/quizControll
 
 const path = require("path")
 
-const PORT = 4001;
+const PORT = 4000;
 
 const app = express()
 app.use(
