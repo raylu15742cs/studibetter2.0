@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import Card from './Card';
+import Header from './Header';
 import Quiz from './Quiz';
 
 const router = createBrowserRouter([

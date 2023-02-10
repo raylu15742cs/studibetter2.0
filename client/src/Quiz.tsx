@@ -3,7 +3,7 @@ import { Link, useParams, redirect, useNavigate} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
 import { getDefinitions, getQuiz, updateScore } from "./api/quizHandler";
 import { TTopic } from "./api/topicHandler";
-//import Header from "./Header";
+import Header from "./Header";
 
 export default function Quiz() {
 
@@ -66,7 +66,7 @@ export default function Quiz() {
   }, [count]);
     return (
         <div>
-            {/* <Header /> */}
+            <Header />
             <h1> Quiz </h1>
             <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2>
             <button onClick={() => currentCard(0)}>{def[0]}</button>
