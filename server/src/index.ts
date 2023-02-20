@@ -5,7 +5,6 @@ import cors from "cors";
 import * as dotenv from 'dotenv'
 dotenv.config()
 
-import Topic from "./models/Topic"
 import { createTopic, deleteTopic, getTopics, updateTopic } from "./controllers/topicController";
 import { createCard, deleteCard, getCards, UpdateCard } from "./controllers/cardController";
 import { getDefinitions, getQuiz, updateScore } from "./controllers/quizController";
