@@ -41,3 +41,5 @@ mongoose
         console.log(`listing on port ${PORT}`)
         app.listen(PORT)
     })
+
+export {}
