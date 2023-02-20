@@ -3,7 +3,7 @@ import { Link, useParams, redirect, useNavigate} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
 import { getDefinitions, getQuiz, updateScore } from "./api/quizHandler";
 import { TTopic } from "./api/topicHandler";
-import Header from "./Header";
+import Header from "./header";
 
 export default function Quiz() {
 
