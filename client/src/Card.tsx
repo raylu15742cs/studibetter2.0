@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { createCard, deleteCard, getCards, TCard, updateCard } from "./api/cardHandler";
 import { deleteTopic, TTopic, updateTopic } from "./api/topicHandler";
 import './App.css'
-import Header from "./Header";
+import Header from "./header";
 
 export default function Cards() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
