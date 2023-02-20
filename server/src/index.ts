@@ -42,4 +42,3 @@ mongoose
         app.listen(PORT)
     })
 
-export {}
