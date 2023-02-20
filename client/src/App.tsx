@@ -2,7 +2,7 @@ import React, { useEffect, useState} from "react";
 import './App.css'
 import { Link } from "react-router-dom";
 import { TTopic, createTopic, getTopics } from "./api/topicHandler";
-import Header from "./Header";
+import Header from "./header";
 import { deleteCard } from "./api/cardHandler";
 
 
