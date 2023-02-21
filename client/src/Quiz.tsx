@@ -68,7 +68,8 @@ export default function Quiz() {
         <div>
             <Header />
             <h1> Quiz </h1>
-            <h2>Count: {count}/10</h2>
+            <h2>Current Term: {currentTerm?.title} </h2>
+            <h3>Count: {count}/10</h3>
             {/* <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2> */}
             <button className="quizbutton" onClick={() => currentCard(0)}>{def[0]}</button>
             <button className="quizbutton" onClick={() => currentCard(1)}>{def[1]}</button>
