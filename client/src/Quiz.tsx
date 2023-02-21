@@ -15,7 +15,9 @@ export default function Quiz() {
     const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
     const [altcount , setAltcount] = useState(0)
-    const [result, setResult] = useState<string[]>([])
+    const [results, setResult] = useState<string[]>([])
+    const [quizcomplete, setQuizComplete] = useState(false);
+    const [blurApp, setBlurApp] = useState(true);
 
     async function currentCard(choice:number) {
       setCount(count+1)
@@ -26,14 +28,18 @@ export default function Quiz() {
       checkSelection(choice)
     }
 
+    async function backToTopic() {
+      navigate(`/topics/${topicId}`)
+    }
+
     // will check selection and call
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
         await updateScore(topicId!, currentTerm!.title , true)
-        await setResult(result => [...result , `True, ${currentTerm!.title}`])
+        await setResult(results => [...results , `${count} ${currentTerm!.title}, Correct`])
       } else {
         await updateScore(topicId!, currentTerm!.title , false)
-        await setResult(result => [...result , `False, ${currentTerm!.title}`])
+        await setResult(results => [...results , `${count} ${currentTerm!.title}, Incorrect`])
       }
     }
  
@@ -52,7 +58,7 @@ export default function Quiz() {
       }
     }, [cards])
     useEffect(()=> {
-      if(tests[0] != undefined) {
+      if(tests[0] != undefined && altcount != 10) {
         if(tests[0].definition != currentTerm!.definition && tests[1].definition != currentTerm!.definition && tests[2].definition != currentTerm!.definition && tests[3].definition != currentTerm!.definition) {
           const index = Math.floor(Math.random() * 3)
           tests[index].definition = currentTerm!.definition
@@ -63,8 +69,8 @@ export default function Quiz() {
     }, [tests])
      useEffect(() => {
     if (altcount == 10) {
-      navigate(`/topics/${topicId}`);
-      console.log(result)
+      setQuizComplete(true)
+      console.log(results)
     }
   }, [count]);
     return (
@@ -78,6 +84,16 @@ export default function Quiz() {
             <button className="quizbutton" onClick={() => currentCard(1)}>{def[1]}</button>
             <button className="quizbutton" onClick={() => currentCard(2)}>{def[2]}</button>
             <button className="quizbutton" onClick={() => currentCard(3)}>{def[3]}</button>
+            { quizcomplete ? (
+              <form className="cardform" onSubmit={backToTopic} >
+                {results.map((result) => (
+                  <h3>{result}</h3>
+                ))
+                }
+                <button> Back to Home </button>
+              </form>
+            ) : ''
+            }  
         </div>
     )
 }
