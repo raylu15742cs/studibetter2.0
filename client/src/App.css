@@ -155,3 +155,10 @@ input {
 .status4 {
   background-color: rgb(255,223,0)
 }
+
+.quizbutton {
+  height: 20vh;
+  width: 20vw;
+  margin: 20px;
+  font-size: 3.2em;
+}
