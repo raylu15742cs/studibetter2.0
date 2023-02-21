@@ -15,6 +15,7 @@ export default function Quiz() {
     const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
     const [altcount , setAltcount] = useState(0)
+    const [result, setResult] = useState<string[]>([])
 
     async function currentCard(choice:number) {
       setCount(count+1)
@@ -29,10 +30,11 @@ export default function Quiz() {
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
         await updateScore(topicId!, currentTerm!.title , true)
+        await setResult(result => [...result , `True, ${currentTerm!.title}`])
       } else {
         await updateScore(topicId!, currentTerm!.title , false)
+        await setResult(result => [...result , `False, ${currentTerm!.title}`])
       }
-
     }
  
     useEffect(() => {
@@ -62,6 +64,7 @@ export default function Quiz() {
      useEffect(() => {
     if (altcount == 10) {
       navigate(`/topics/${topicId}`);
+      console.log(result)
     }
   }, [count]);
     return (
