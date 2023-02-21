@@ -81,16 +81,16 @@ export default function Cards() {
       setCards(newCard.cards);
       setTopic(newCard.topics);
     }
-    fetchCards();
-  }, [topicId , cards])
-
-  useEffect(()=> {
-    checkCard();
     if(cards.length >= 10 ) {
       setQuizShow(true)
     } else {
       setQuizShow(false)
     }
+    fetchCards();
+  }, [topicId , cards])
+
+  useEffect(()=> {
+    checkCard();
   }, [cards])
 
   return (
