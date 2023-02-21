@@ -36,10 +36,10 @@ export default function Quiz() {
     async function checkSelection(choice:number){
       if(currentTerm!.definition == def[choice]) {
         await updateScore(topicId!, currentTerm!.title , true)
-        await setResult(results => [...results , `${count} ${currentTerm!.title}, Correct`])
+        setResult(results => [...results , `${count}: ${currentTerm!.title}, Correct |`])
       } else {
         await updateScore(topicId!, currentTerm!.title , false)
-        await setResult(results => [...results , `${count} ${currentTerm!.title}, Incorrect`])
+        setResult(results => [...results , `${count}: ${currentTerm!.title}, Incorrect |`])
       }
     }
  
@@ -70,31 +70,34 @@ export default function Quiz() {
      useEffect(() => {
     if (altcount == 10) {
       setQuizComplete(true)
+      setBlurApp(false)
       console.log(results)
     }
   }, [count]);
     return (
         <div>
-            <Header />
-            <h1> Quiz </h1>
-            <h2>Current Term: {currentTerm?.title} </h2>
-            <h3>Count: {count}/10</h3>
-            {/* <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2> */}
-            <button className="quizbutton" onClick={() => currentCard(0)}>{def[0]}</button>
-            <button className="quizbutton" onClick={() => currentCard(1)}>{def[1]}</button>
-            <button className="quizbutton" onClick={() => currentCard(2)}>{def[2]}</button>
-            <button className="quizbutton" onClick={() => currentCard(3)}>{def[3]}</button>
-            { quizcomplete ? (
-              <form className="cardform" onSubmit={backToTopic} >
-                {results.map((result) => (
-                  <h3>{result}</h3>
-                ))
-                }
-                <button> Back to Home </button>
-              </form>
-            ) : ''
-            }  
-        </div>
+          <div className={blurApp ? '' : 'blur'}>
+              <Header />
+              <h1> Quiz </h1>
+              <h2>Current Term: {currentTerm?.title} </h2>
+              <h3>Count: {count}/10</h3>
+              {/* <h2> {currentTerm?.title}: Def {currentTerm?.definition} Count {count}/10</h2> */}
+              <button className="quizbutton" onClick={() => currentCard(0)}>{def[0]}</button>
+              <button className="quizbutton" onClick={() => currentCard(1)}>{def[1]}</button>
+              <button className="quizbutton" onClick={() => currentCard(2)}>{def[2]}</button>
+              <button className="quizbutton" onClick={() => currentCard(3)}>{def[3]}</button>
+          </div>
+          { quizcomplete ? (
+                <form className="cardform resultform" onSubmit={backToTopic} >
+                  {results.map((result) => (
+                    <h3>{result}</h3>
+                  ))
+                  }
+                  <button> Back to Home </button>
+                </form>
+              ) : ''
+              } 
+        </div> 
     )
 }
 

@@ -162,3 +162,11 @@ input {
   margin: 20px;
   font-size: 3.2em;
 }
+
+.resultform {
+  display: flex;
+  flex-direction: row;
+  width: 700px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
