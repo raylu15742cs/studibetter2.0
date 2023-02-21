@@ -137,6 +137,7 @@ export default function Cards() {
           />
           <input 
             id="card-title"
+            className="definition"
             placeholder = "Definition"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
               // Save what is typed
@@ -165,7 +166,8 @@ export default function Cards() {
               }
             }
           />
-          <input 
+          <input
+            className="definition" 
             id="card-title"
             defaultValue = {currentCard!.definition}
             placeholder = "Definition"
@@ -186,7 +188,7 @@ export default function Cards() {
           updateTopicActive ? (
             <form  className="cardform" onSubmit={(e:React.FormEvent) => {submitUpdateTopic(e)}}>
               <div className="closePopup" onClick={() => {setUpdateTopic(false); setBlurApp(blurApp=>!blurApp)}}> x </div>
-            <label> Update Card</label>
+            <label> Update Topic</label>
             <input 
               id="topic-title"
               defaultValue = {topic!.title}

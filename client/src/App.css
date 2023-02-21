@@ -170,3 +170,7 @@ input {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.definition {
+  font-size: 1em
+}
