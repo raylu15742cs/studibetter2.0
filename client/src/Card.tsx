@@ -17,6 +17,7 @@ export default function Cards() {
   const [updateTopicActive, setUpdateTopic] = useState(false);
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
+  const [quizShow, setQuizShow] = useState(false)
   let { topicId } = useParams();
  
   async function handleCreateCard(e: React.FormEvent) {
@@ -85,6 +86,11 @@ export default function Cards() {
 
   useEffect(()=> {
     checkCard();
+    if(cards.length >= 10 ) {
+      setQuizShow(true)
+    } else {
+      setQuizShow(false)
+    }
   }, [cards])
 
   return (
@@ -98,7 +104,7 @@ export default function Cards() {
         <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
           <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
         </Link>
-        <Link to={`/topics/${topicId}/quiz`}><h2 className={cards.length > 10 ? "show" : ""}>Quiz</h2></Link>
+        <Link to={`/topics/${topicId}/quiz`}><h2 className={quizShow ? "show" : ""}>Quiz</h2></Link>
         <div className="cards">
           {cards.map((card: TCard) => (
               <div className={`card status${card.status}`} key={card._id}>
