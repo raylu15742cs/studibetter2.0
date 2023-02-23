@@ -2,6 +2,13 @@
   margin: 10px auto;
   text-align: center;
 }
+img {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
 
 .App {
   display: flex;
@@ -55,6 +62,13 @@ input {
 }
 .card {
   flex-direction: column
+}
+.image {
+  max-width: 80vw;
+  width: 750px;
+  border: 2px solid red;
+  border-radius: 25px;
+  margin: 10px;
 }
 .cardform {
 	position: fixed;
@@ -139,14 +153,15 @@ input {
 .addPopup:hover{
   background-color: #E1D9D1;
 }
-.missionStatement {
-  margin: 0 30vw;
+.paragraphs {
+  margin: 0 10vw;
 }
 .levels {
-  margin-top: 5vh;
+  margin-top: 3vh;
 }
 .levelsandimage {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   margin-left: 5vw;
   gap: 2vw;
