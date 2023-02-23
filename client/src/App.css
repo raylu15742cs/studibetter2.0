@@ -65,7 +65,7 @@ input {
 }
 .image {
   max-width: 80vw;
-  width: 750px;
+  width: 1200px;
   border: 2px solid red;
   border-radius: 25px;
   margin: 10px;
