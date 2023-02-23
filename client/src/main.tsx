@@ -9,11 +9,16 @@ import './index.css'
 import Card from './Card';
 import Header from './Header';
 import Quiz from './Quiz';
+import Demo from './Demo';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+  },
+  {
+    path:'/demo',
+    element: <Demo />
   },
   {
     path: "/topics/:topicId",
