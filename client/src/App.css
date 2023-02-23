@@ -139,7 +139,20 @@ input {
 .addPopup:hover{
   background-color: #E1D9D1;
 }
-
+.boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.box {
+  min-width: 20px;
+  min-height: 20px;
+  display: flex;
+}
+.status0 {
+  background-color: white;
+}
 .status1 {
   background-color: rgb(144,238,144)
 }
