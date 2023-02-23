@@ -8,9 +8,9 @@ const Demo = () => {
         <Header />
         <div>
             <h1>Welcome to StudiBetter</h1>
-            <h2>Mission:</h2>
-            <p>StudiBetter is going to become an application for students and learners that target their weakness and improves the users performance. By using a targeted quiz system, users can see their level with each keyword and steadily improve.</p>
-            <h3>Levels in StudiBetter</h3>
+            <h2 className='levels'>Mission:</h2>
+            <p className='missionStatement'>StudiBetter is going to become an application for students and learners that target their weakness and improves the users performance. By using a targeted quiz system, users can see their level with each keyword and steadily improve.</p>
+            <h2 className='levels'>Levels in StudiBetter</h2>
             <div className='levelsandimage'>
                 <div>
                     <div className='boxes'>
@@ -34,7 +34,7 @@ const Demo = () => {
                         <div className='status4 box'></div>
                     </div>
                 </div>
-                <img src={studibetterimg} style={{width: 800}}/>
+                <img src={studibetterimg} style={{width: 750}}/>
                 
             </div>
         </div>

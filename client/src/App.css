@@ -139,10 +139,16 @@ input {
 .addPopup:hover{
   background-color: #E1D9D1;
 }
+.missionStatement {
+  margin: 0 30vw;
+}
+.levels {
+  margin-top: 5vh;
+}
 .levelsandimage {
   display: flex;
   justify-content: center;
-  margin-left: 10vw;
+  margin-left: 5vw;
   gap: 2vw;
 }
 .boxes {
