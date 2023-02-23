@@ -40,7 +40,7 @@ const Demo = () => {
             </div>
             <h2 className='levels'> Quiz</h2>
             <div>
-                <p className='paragraphs'>The Quiz feature is your main way to improve the status of your keywords (more methods coming in the future) It will eventually pool from the study set in a specialized way so that the lower the status of the keyword, the more it appears.(Currently, it is just randomly selecting 10 keywords)</p>
+                <p className='paragraphs'>The Quiz feature is your main way to improve the status of your keywords (more methods coming in the future) It will eventually pool from the study set in a specialized way so that the lower the status of the keyword, the more it appears. (1 Master, 1 Advanced, 2 Intermediate, 2 Basic, 4 Beginner)</p>
                 <div>
                     <h2>Start of Quiz</h2>
                     <img  className='image' src={quizStart}/>
