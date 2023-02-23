@@ -10,7 +10,7 @@ export default function Quiz() {
     const navigate = useNavigate();
     const [cards, setCards] = useState<TCard[]>([])
     const [tests, setTests] = useState<TCard[]>([])
-    const [def , setDefinitions] = useState<string[]>(["0","1","2","3"])
+    const [def , setDefinitions] = useState<string[]>([])
     const [currentTerm, setCurrentTerm] = useState<TCard>()
     const [count , setCount] = useState(1)
     const [altcount , setAltcount] = useState(0)
@@ -75,8 +75,9 @@ export default function Quiz() {
   }, [count]);
     return (
         <div>
-          <div className={blurApp ? '' : 'blur'}>
-              <Header />
+          <Header />
+          { def.length > 1 ? (
+            <div className={blurApp ? '' : 'blur'}>
               <h1> Quiz </h1>
               <h2>Current Term: {currentTerm?.title} </h2>
               <h3>Count: {count}/10</h3>
@@ -86,6 +87,9 @@ export default function Quiz() {
               <button className="quizbutton" onClick={() => currentCard(2)}>{def[2]}</button>
               <button className="quizbutton" onClick={() => currentCard(3)}>{def[3]}</button>
           </div>
+          ) : ''
+
+          }
           { quizcomplete ? (
                 <form className="cardform resultform" onSubmit={backToTopic} >
                   {results.map((result) => (
