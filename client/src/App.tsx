@@ -3,7 +3,6 @@ import './App.css'
 import { Link } from "react-router-dom";
 import { TTopic, createTopic, getTopics } from "./api/topicHandler";
 import Header from "./header";
-import { deleteCard } from "./api/cardHandler";
 
 
 
