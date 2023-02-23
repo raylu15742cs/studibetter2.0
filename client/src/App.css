@@ -139,6 +139,12 @@ input {
 .addPopup:hover{
   background-color: #E1D9D1;
 }
+.levelsandimage {
+  display: flex;
+  justify-content: center;
+  margin-left: 10vw;
+  gap: 2vw;
+}
 .boxes {
   display: flex;
   justify-content: center;
