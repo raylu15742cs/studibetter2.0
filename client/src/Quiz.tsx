@@ -3,6 +3,7 @@ import { Link, useParams, redirect, useNavigate} from "react-router-dom";
 import { getCards, TCard } from "./api/cardHandler";
 import { getDefinitions, getQuiz, updateScore } from "./api/quizHandler";
 import Header from "./header";
+import PulseLoader from 'react-spinners/PulseLoader'
 
 export default function Quiz() {
 
@@ -87,7 +88,7 @@ export default function Quiz() {
               <button className="quizbutton" onClick={() => currentCard(2)}>{def[2]}</button>
               <button className="quizbutton" onClick={() => currentCard(3)}>{def[3]}</button>
           </div>
-          ) : ''
+          ) : <PulseLoader color={"#FFF"} />
 
           }
           { quizcomplete ? (
