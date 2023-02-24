@@ -3,6 +3,7 @@ import './App.css'
 import { Link } from "react-router-dom";
 import { TTopic, createTopic, getTopics } from "./api/topicHandler";
 import Header from "./header";
+import PulseLoader from 'react-spinners/PulseLoader'
 
 
 
@@ -36,7 +37,8 @@ function App() {
       <div className={blurApp ? "" : "blur"} >
       <Header />
       <h1> Topics</h1>
-      <div className="topics">
+      {topics.length > 1 ? (
+        <div className="topics">
         {topics.map((topic) => (
           <Link className="topictitle" to={`topics/${topic._id}`}>
             <div className="card" key={topic._id}>
@@ -48,6 +50,9 @@ function App() {
         ))
         }
       </div>
+      ) : <PulseLoader color={"#FFF"} />
+      }
+    
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp => !blurApp)}}>Add Topic</div>
       </div>
       { addActive ? (

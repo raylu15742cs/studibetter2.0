@@ -4,6 +4,8 @@ import { createCard, deleteCard, getCards, TCard, updateCard } from "./api/cardH
 import { deleteTopic, TTopic, updateTopic } from "./api/topicHandler";
 import './App.css'
 import Header from "./header";
+import PulseLoader from 'react-spinners/PulseLoader'
+import { useNavigate } from "react-router-dom";
 
 export default function Cards() {
   const [isEmpty, setIsEmpty] = useState<Boolean>(true)
@@ -18,7 +20,10 @@ export default function Cards() {
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
   const [quizShow, setQuizShow] = useState(false)
+  const [display, setDisplay] = useState(false)
   let { topicId } = useParams();
+
+  const navigate = useNavigate()
  
   async function handleCreateCard(e: React.FormEvent) {
     e.preventDefault();
@@ -44,7 +49,8 @@ export default function Cards() {
   }
   async function handleDeleteTopic(topicId: string) {
     await deleteTopic(topicId)
-
+    navigate("/")
+    
   }
 
   async function getCard(card: TCard) {
@@ -97,26 +103,28 @@ export default function Cards() {
     <div>
       <div className={blurApp ? "app" : "blur app"}>
         <Header />
-        <div className="topictag">
-          <h1>{topic?.title}</h1>
-          <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
-        </div>
-        <Link onClick={() => handleDeleteTopic(topicId!)} to={'/'}>
-          <button className={isEmpty ? '' : 'show'} id="deletebutton" >Delete Topic</button>
-        </Link>
-        <Link to={`/topics/${topicId}/quiz`}><h2 className={quizShow ? "" : "show"}>Quiz</h2></Link>
-        <div className="cards">
-          {cards.map((card: TCard) => (
-              <div className={`card status${card.status}`} key={card._id}>
-                <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
-                <h1>{card.title}</h1>
-                <p className="hidedef"> Definition: {card.definition}</p>
-                <button className="hideedit" onClick={() => {getCard(card); setBlurApp(blurApp=>!blurApp)}}> edit </button> 
+        { topic?.title ? (
+          <div>
+              <div className="topictag">
+                <h1>{topic?.title}</h1>
+                <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
               </div>
-    
-          ))
-          }
-        </div>
+                <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteTopic(topicId!)} >Delete Topic</button>
+              <Link to={`/topics/${topicId}/quiz`}><h2 className={quizShow ? "" : "show"}>Quiz</h2></Link>
+              <div className="cards">
+                {cards.map((card: TCard) => (
+                <div className={`card status${card.status}`} key={card._id}>
+                  <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
+                  <h1>{card.title}</h1>
+                  <p className="hidedef"> Definition: {card.definition}</p>
+                  <button className="hideedit" onClick={() => {getCard(card); setBlurApp(blurApp=>!blurApp)}}> edit </button> 
+              </div>
+              ))
+              }
+            </div>
+          </div>
+        ): <PulseLoader color={"#FFF"} />}
+
       </div>
       
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp=>!blurApp)}}>Add Card</div>
