@@ -122,12 +122,34 @@ export default function Cards() {
               ))
               }
             </div>
+            <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp=>!blurApp)}}>Add Card</div>
+            <div>
+                <div className='boxes'>
+                    <p>Level 1: Beginner</p>
+                    <div className='status0 box'></div>
+                </div>
+                <div className='boxes'>
+                    <p>Level 2: Basic</p>
+                    <div className='status1 box'></div>
+                </div>
+                <div className='boxes'>
+                    <p>Level 3: Intermediate</p>
+                    <div className='status2 box'></div>
+                </div>
+                <div className='boxes'>
+                    <p>Level 4: Advance</p>
+                    <div className='status3 box'></div>
+                </div>
+                <div className='boxes'>
+                    <p>Level 5: Master</p>
+                    <div className='status4 box'></div>
+                </div>
+            </div>
           </div>
         ): <PulseLoader color={"#FFF"} />}
 
       </div>
       
-      <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp=>!blurApp)}}>Add Card</div>
       {/* Add New Card */}
       { addActive ? (
         <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateCard(e)}}>
