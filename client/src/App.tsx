@@ -32,6 +32,7 @@ function App() {
     fetchTopics();
   }, [topics])
 
+
   return (
     <div className="App">
       <div className={blurApp ? "" : "blur"} >
