@@ -9,6 +9,8 @@ import './index.css'
 import Card from './Card';
 import Quiz from './Quiz';
 import Intro from './Intro';
+import store from './app/store';
+import { Provider } from 'react-redux'
 
 const router = createBrowserRouter([
   {
@@ -31,6 +33,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+        <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>,
 )

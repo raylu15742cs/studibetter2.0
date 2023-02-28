@@ -2,20 +2,23 @@ import { Link } from "react-router-dom"
 import { API_URL } from "./api/config"
 import { useEffect, useState } from "react"
 import jwtDecode from "jwt-decode"
+import { useSelector, useDispatch } from 'react-redux'
+import { newuser,resetuser, newsub, username, usersub } from './components/user'
 
 function Header() {
-    
-    const [ user, setUser ] = useState<any>({})
+    const dispatch = useDispatch()
+    const name = useSelector(username)
+    const sub = useSelector(usersub)
 
     function handleSignOut(event:any) {
-        setUser({})
+        dispatch(resetuser())
         document.getElementById('signInDiv')!.hidden = false;
     }
 
-    function handleCallbackResponse(response: any) {
-        var userObject = jwtDecode(response.credential)
-        console.log(userObject)
-        setUser(userObject)
+    async function handleCallbackResponse(response: any) {
+        var userObject:any = jwtDecode(response.credential)
+        dispatch(newuser(userObject.name))
+        dispatch(newsub(userObject.sub))
         document.getElementById('signInDiv')!.hidden = true;
     }
 
@@ -35,6 +38,13 @@ function Header() {
         google.accounts.id.prompt()
     }, [])
 
+    useEffect(() => {
+        if(name!= "") {
+            document.getElementById('signInDiv')!.hidden = true;
+        }
+    }, [name])
+
+
 
     return (
         <div className="Header">
@@ -42,12 +52,11 @@ function Header() {
             <div className="headerright">
                 <Link to={'/demo'}><h2> Demo</h2></Link>
                 <div id="signInDiv"></div>
-                { user.name &&
-                    <div>
-                        <h3>{user.name}</h3>
+                {name &&
+                 <div id="signedin">
+                        <h3>{name}</h3>
                         <button onClick={(e) => handleSignOut(e)}>Sign Out </button>
                     </div>
-
                 }
             </div>
         </div>
