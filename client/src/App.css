@@ -105,7 +105,7 @@ input {
 
 .headerright {
   display: flex;
-  gap: 8vw;
+  gap: 2vw;
 }
 #deletebutton {
 
@@ -200,7 +200,7 @@ input {
   height: 15vh;
   width: 15vw;
   margin: 20px;
-  font-size: 3.2em;
+  font-size: 2em;
 }
 
 .resultform {

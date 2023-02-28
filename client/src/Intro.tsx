@@ -4,7 +4,7 @@ import studibetterimg from './assets/studibetter.png'
 import results from './assets/quizResult.png'
 import quizStart from './assets/quizStart.png'
 
-const Demo = () => {
+const Intro = () => {
   return (
     <>
         <Header />
@@ -56,4 +56,4 @@ const Demo = () => {
   )
 }
 
-export default Demo
+export default Intro

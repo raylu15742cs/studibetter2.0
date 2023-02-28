@@ -8,7 +8,7 @@ import {
 import './index.css'
 import Card from './Card';
 import Quiz from './Quiz';
-import Demo from './Demo';
+import Intro from './Intro';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   },
   {
     path:'/demo',
-    element: <Demo />
+    element: <Intro />
   },
   {
     path: "/topics/:topicId",
