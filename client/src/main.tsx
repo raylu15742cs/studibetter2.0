@@ -9,6 +9,7 @@ import './index.css'
 import Card from './Card';
 import Quiz from './Quiz';
 import Intro from './Intro';
+import Userpage from './Userpage';
 import store from './app/store';
 import { Provider } from 'react-redux'
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "topics/:topicId/quiz",
     element: <Quiz />,
+  },
+  {
+    path: "/:name",
+    element: <Userpage />,
   }
 ]);
 
