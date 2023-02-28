@@ -3,12 +3,12 @@ import { API_URL } from "./api/config"
 import { useEffect, useState } from "react"
 import jwtDecode from "jwt-decode"
 import { useSelector, useDispatch } from 'react-redux'
-import { newuser,resetuser, newsub, username, usersub } from './components/user'
+import { newuser,resetuser, newsub, username } from './components/user'
 
 function Header() {
     const dispatch = useDispatch()
     const name = useSelector(username)
-    const sub = useSelector(usersub)
+
 
     function handleSignOut(event:any) {
         dispatch(resetuser())
