@@ -49,7 +49,7 @@ export default function Cards() {
   }
   async function handleDeleteTopic(topicId: string) {
     await deleteTopic(topicId)
-    navigate("/")
+    navigate(`/${username}`)
     
   }
 
@@ -152,9 +152,11 @@ export default function Cards() {
       
       {/* Add New Card */}
       { addActive ? (
-        <form  className="cardform" onSubmit={(e:React.FormEvent) => {handleCreateCard(e)}}>
+        <form onSubmit={(e:React.FormEvent) => {handleCreateCard(e)}}>
           <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp=>!blurApp)}}>X</div>
-          <label htmlFor="card-title">Card Name</label>
+          { cards.length < 15 ? ( <div className="cardform">
+            <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp=>!blurApp)}}>X</div>
+            <label htmlFor="card-title">Card Name</label>
           <input 
             id="card-title"
             placeholder = "Keyword"
@@ -177,6 +179,13 @@ export default function Cards() {
             }
           />
           <button>Create Card</button>
+          </div>) :
+            <div className="cardform">
+              <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp=>!blurApp)}}>X</div>
+              <h2>Max Card Reached</h2>
+            </div>
+
+          }
         </form>) : ""
       }
       {/* Update Card */}

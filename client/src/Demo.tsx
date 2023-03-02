@@ -57,8 +57,11 @@ function Demo() {
     
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp => !blurApp)}}>Add Topic</div>
       </div>
+
       { addActive ? (
-        <form className="cardform" onSubmit={handleCreateTopic}>
+        <div>
+          {topics.length < 5 ? (
+            <form className="cardform" onSubmit={handleCreateTopic}>
           <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
           <label htmlFor="topic-title">Topic Title</label>
           <input 
@@ -74,8 +77,13 @@ function Demo() {
           />
           <button>Create Topic</button>
       </form>
-      ) : ""
-      }
+
+          ) : <div className="cardform">
+            <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
+            <h2>Max Topics Reacted</h2> 
+            </div>}
+        </div>
+      ): ""}
     </div>
   )
 }
