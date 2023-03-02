@@ -20,7 +20,6 @@ export default function Cards() {
   const [currentCard, setCurrentCard] = useState<TCard>();
   const [blurApp, setBlurApp] = useState(true);
   const [quizShow, setQuizShow] = useState(false)
-  const [display, setDisplay] = useState(false)
   let { topicId, username } = useParams();
 
   const navigate = useNavigate()
