@@ -2,20 +2,23 @@ import { Link } from "react-router-dom"
 import { API_URL } from "./api/config"
 import { useEffect, useState } from "react"
 import jwtDecode from "jwt-decode"
+import { useSelector, useDispatch } from 'react-redux'
+import { newuser,resetuser, newsub, username } from './components/user'
 
 function Header() {
-    
-    const [ user, setUser ] = useState<any>({})
+    const dispatch = useDispatch()
+    const name = useSelector(username)
+
 
     function handleSignOut(event:any) {
-        setUser({})
+        dispatch(resetuser())
         document.getElementById('signInDiv')!.hidden = false;
     }
 
-    function handleCallbackResponse(response: any) {
-        var userObject = jwtDecode(response.credential)
-        console.log(userObject)
-        setUser(userObject)
+    async function handleCallbackResponse(response: any) {
+        var userObject:any = jwtDecode(response.credential)
+        dispatch(newuser(userObject.name))
+        dispatch(newsub(userObject.sub))
         document.getElementById('signInDiv')!.hidden = true;
     }
 
@@ -31,23 +34,32 @@ function Header() {
                 type: "standard"
             }
         )
-
-        google.accounts.id.prompt()
+        if (!name) {
+            google.accounts.id.prompt()
+        }
     }, [])
+
+    useEffect(() => {
+        if(name!= "") {
+            document.getElementById('signInDiv')!.hidden = true;
+        }
+    }, [name])
+
 
 
     return (
         <div className="Header">
             <Link to={'/'}><h1>StudiBetter</h1></Link>
             <div className="headerright">
+                {/* {name && 
+                <Link to={`/${name}`}><h2> Sets</h2></Link>} */}
                 <Link to={'/demo'}><h2> Demo</h2></Link>
                 <div id="signInDiv"></div>
-                { user.name &&
-                    <div>
-                        <h3>{user.name}</h3>
+                {name &&
+                 <div id="signedin">
+                        <h3>{name}</h3>
                         <button onClick={(e) => handleSignOut(e)}>Sign Out </button>
                     </div>
-
                 }
             </div>
         </div>
