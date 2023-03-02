@@ -44,9 +44,9 @@ function Demo() {
         {topics.map((topic) => (
           <Link className="topictitle" to={`/${username}/topics/${topic._id}`}>
             <div className="card" key={topic._id}>
-                <h1>
+                <h2>
                   {topic.title}
-                </h1>
+                </h2>
             </div>
           </Link>
         ))

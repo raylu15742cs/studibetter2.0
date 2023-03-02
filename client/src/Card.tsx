@@ -114,7 +114,7 @@ export default function Cards() {
                 {cards.map((card: TCard) => (
                 <div className={`card status${card.status}`} key={card._id}>
                   <button className="hidedelete" onClick={() => handleDeleteCard(card._id)}>X</button>
-                  <h1>{card.title}</h1>
+                  <h2>{card.title}</h2>
                   <p className="hidedef"> Definition: {card.definition}</p>
                   <button className="hideedit" onClick={() => {getCard(card); setBlurApp(blurApp=>!blurApp)}}> edit </button> 
               </div>
