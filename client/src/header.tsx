@@ -50,8 +50,8 @@ function Header() {
         <div className="Header">
             <Link to={'/'}><h1>StudiBetter</h1></Link>
             <div className="headerright">
-                {name && 
-                <Link to={`/${name}`}><h2> Sets</h2></Link>}
+                {/* {name && 
+                <Link to={`/${name}`}><h2> Sets</h2></Link>} */}
                 <Link to={'/demo'}><h2> Demo</h2></Link>
                 <div id="signInDiv"></div>
                 {name &&
