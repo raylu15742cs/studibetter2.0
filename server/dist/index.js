@@ -29,7 +29,6 @@ exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var mongoose_1 = __importDefault(require("mongoose"));
 var cors_1 = __importDefault(require("cors"));
-var path_1 = __importDefault(require("path"));
 var dotenv = __importStar(require("dotenv"));
 dotenv.config();
 var topicController_1 = require("./controllers/topicController");
@@ -37,13 +36,6 @@ var cardController_1 = require("./controllers/cardController");
 var quizController_1 = require("./controllers/quizController");
 var PORT = process.env.PORT || 5003;
 var app = (0, express_1["default"])();
-app.get('/*', function (req, res) {
-    res.sendFile(path_1["default"].join(__dirname, '../index.html'), function (err) {
-        if (err) {
-            res.status(500).send(err);
-        }
-    });
-});
 app.use((0, cors_1["default"])({
     origin: "*"
 }));
