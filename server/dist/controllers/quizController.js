@@ -43,21 +43,70 @@ exports.storeSelected = exports.checkSelection = exports.updateScore = exports.g
 var Card_1 = __importDefault(require("../models/Card"));
 var Topic_1 = __importDefault(require("../models/Topic"));
 // Gets a random 10 but not filtered yet
+// export async function getQuiz(req: Request, res: Response) {
+//     const topicId = req.params.topicId
+//     const topics = await Topic.findById(topicId)
+//     const card = await Card.aggregate([{
+//       $match: { topic: topics!._id }
+//    }, { $sample: { size: 10 }}])
+//     res.json({card})
+// } 
+//Build function that gets 10 random but filtered by status
 function getQuiz(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var topicId, topics, card;
+        var count, card, topicId, topics, master, advance, intermediate, basic, beginner, remainder;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
+                    count = 10;
+                    card = [];
                     topicId = req.params.topicId;
                     return [4 /*yield*/, Topic_1["default"].findById(topicId)];
                 case 1:
                     topics = _a.sent();
                     return [4 /*yield*/, Card_1["default"].aggregate([{
-                                $match: { topic: topics._id }
-                            }, { $sample: { size: 10 } }])];
+                                $match: { $and: [{ topic: topics._id }, { status: 4 }] }
+                            }, { $sample: { size: 1 } }])];
                 case 2:
-                    card = _a.sent();
+                    master = _a.sent();
+                    count -= master.length;
+                    card = card.concat(master);
+                    return [4 /*yield*/, Card_1["default"].aggregate([{
+                                $match: { $and: [{ topic: topics._id }, { status: 3 }] }
+                            }, { $sample: { size: 1 } }])];
+                case 3:
+                    advance = _a.sent();
+                    count -= advance.length;
+                    card = card.concat(advance);
+                    return [4 /*yield*/, Card_1["default"].aggregate([{
+                                $match: { $and: [{ topic: topics._id }, { status: 2 }] }
+                            }, { $sample: { size: 2 } }])];
+                case 4:
+                    intermediate = _a.sent();
+                    count -= intermediate.length;
+                    card = card.concat(intermediate);
+                    return [4 /*yield*/, Card_1["default"].aggregate([{
+                                $match: { $and: [{ topic: topics._id }, { status: 1 }] }
+                            }, { $sample: { size: 2 } }])];
+                case 5:
+                    basic = _a.sent();
+                    count -= basic.length;
+                    card = card.concat(basic);
+                    return [4 /*yield*/, Card_1["default"].aggregate([{
+                                $match: { $and: [{ topic: topics._id }, { status: 0 }] }
+                            }, { $sample: { size: 4 } }])];
+                case 6:
+                    beginner = _a.sent();
+                    count -= beginner.length;
+                    card = card.concat(beginner);
+                    console.log(count);
+                    return [4 /*yield*/, Card_1["default"].aggregate([{
+                                $match: { $and: [{ topic: topics._id }] }
+                            }, { $sample: { size: count } }])];
+                case 7:
+                    remainder = _a.sent();
+                    count -= remainder.length;
+                    card = card.concat(remainder);
                     res.json({ card: card });
                     return [2 /*return*/];
             }
