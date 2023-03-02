@@ -8,6 +8,7 @@ import PulseLoader from 'react-spinners/PulseLoader'
 export default function Quiz() {
 
     let { topicId } = useParams();
+    let { username } = useParams();
     const navigate = useNavigate();
     const [cards, setCards] = useState<TCard[]>([])
     const [tests, setTests] = useState<TCard[]>([])
@@ -29,7 +30,7 @@ export default function Quiz() {
     }
 
     async function backToTopic() {
-      navigate(`/topics/${topicId}`)
+      navigate(`/${username}/topics/${topicId}`)
     }
 
     // will check selection and call

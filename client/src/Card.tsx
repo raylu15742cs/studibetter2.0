@@ -21,7 +21,7 @@ export default function Cards() {
   const [blurApp, setBlurApp] = useState(true);
   const [quizShow, setQuizShow] = useState(false)
   const [display, setDisplay] = useState(false)
-  let { topicId } = useParams();
+  let { topicId, username } = useParams();
 
   const navigate = useNavigate()
  
@@ -110,7 +110,7 @@ export default function Cards() {
                 <button className="edittopic" onClick={(e: React.FormEvent) => {handleUpdateTopic(e); setBlurApp(blurApp=>!blurApp)}}>Edit</button>
               </div>
                 <button className={isEmpty ? '' : 'show'} id="deletebutton" onClick={() => handleDeleteTopic(topicId!)} >Delete Topic</button>
-              <Link to={`/topics/${topicId}/quiz`}><h2 className={quizShow ? "" : "show"}>Quiz</h2></Link>
+              <Link to={`/${username}/topics/${topicId}/quiz`}><h2 className={quizShow ? "" : "show"}>Quiz</h2></Link>
               <div className="cards">
                 {cards.map((card: TCard) => (
                 <div className={`card status${card.status}`} key={card._id}>

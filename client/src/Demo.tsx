@@ -7,7 +7,8 @@ import PulseLoader from 'react-spinners/PulseLoader'
 
 
 
-function App() {
+function Demo() {
+  let username = 'demo'
   const [topics, setTopics] = useState<TTopic[]>([])
   const [title, setTitle] = useState("");
   const [addActive, setAddActive] = useState(false);
@@ -41,7 +42,7 @@ function App() {
       {topics.length > 1 ? (
         <div className="topics">
         {topics.map((topic) => (
-          <Link className="topictitle" to={`topics/${topic._id}`}>
+          <Link className="topictitle" to={`/${username}/topics/${topic._id}`}>
             <div className="card" key={topic._id}>
                 <h1>
                   {topic.title}
@@ -79,4 +80,4 @@ function App() {
   )
 }
 
-export default App
+export default Demo
