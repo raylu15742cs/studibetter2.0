@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import Demo from './Demo'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,18 +18,18 @@ import { persistStore } from 'redux-persist'
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Intro />,
   },
   {
     path:'/demo',
-    element: <Intro />
+    element: <Demo />
   },
   {
-    path: "/topics/:topicId",
+    path: ":username/topics/:topicId",
     element: <Card />,
   },
   {
-    path: "topics/:topicId/quiz",
+    path: ":username/topics/:topicId/quiz",
     element: <Quiz />,
   },
   {

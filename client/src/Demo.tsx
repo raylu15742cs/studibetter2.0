@@ -7,7 +7,8 @@ import PulseLoader from 'react-spinners/PulseLoader'
 
 
 
-function App() {
+function Demo() {
+  let username = 'demo'
   const [topics, setTopics] = useState<TTopic[]>([])
   const [title, setTitle] = useState("");
   const [addActive, setAddActive] = useState(false);
@@ -41,7 +42,7 @@ function App() {
       {topics.length > 1 ? (
         <div className="topics">
         {topics.map((topic) => (
-          <Link className="topictitle" to={`topics/${topic._id}`}>
+          <Link className="topictitle" to={`/${username}/topics/${topic._id}`}>
             <div className="card" key={topic._id}>
                 <h1>
                   {topic.title}
@@ -56,8 +57,11 @@ function App() {
     
       <div className="addPopup" onClick={() => {setAddActive(true); setBlurApp(blurApp => !blurApp)}}>Add Topic</div>
       </div>
+
       { addActive ? (
-        <form className="cardform" onSubmit={handleCreateTopic}>
+        <div>
+          {topics.length < 5 ? (
+            <form className="cardform" onSubmit={handleCreateTopic}>
           <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
           <label htmlFor="topic-title">Topic Title</label>
           <input 
@@ -73,10 +77,15 @@ function App() {
           />
           <button>Create Topic</button>
       </form>
-      ) : ""
-      }
+
+          ) : <div className="cardform">
+            <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
+            <h2>Max Topics Reacted</h2> 
+            </div>}
+        </div>
+      ): ""}
     </div>
   )
 }
 
-export default App
+export default Demo
