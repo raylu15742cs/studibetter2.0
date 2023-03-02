@@ -34,8 +34,9 @@ function Header() {
                 type: "standard"
             }
         )
-
-        google.accounts.id.prompt()
+        if (!name) {
+            google.accounts.id.prompt()
+        }
     }, [])
 
     useEffect(() => {
