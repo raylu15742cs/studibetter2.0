@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
-import path from 'path';
+
 
 import * as dotenv from 'dotenv'
 dotenv.config()
@@ -14,13 +14,6 @@ const PORT = process.env.PORT || 5003;
 
 const app = express()
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
 
 app.use(
     cors({
