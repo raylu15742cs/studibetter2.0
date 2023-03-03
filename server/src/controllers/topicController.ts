@@ -3,14 +3,16 @@ import Topic from "../models/Topic"
 
 // Find all topics
 export async function getTopics(req:Request, res:Response) {
-    const topics  = await Topic.find()
+    const username = req.params.username
+    const topics  = await Topic.find({username: username})
     res.json(topics)
 }
 
 
 export async function createTopic(req: Request, res: Response) {
     const newTopic = new Topic({
-        title: req.body.title
+        title: req.body.title,
+        username: req.body.username
     })
     const createdTopic = await newTopic.save()
     res.json(createdTopic)

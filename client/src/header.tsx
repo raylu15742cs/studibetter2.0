@@ -3,7 +3,7 @@ import { API_URL } from "./api/config"
 import { useEffect, useState } from "react"
 import jwtDecode from "jwt-decode"
 import { useSelector, useDispatch } from 'react-redux'
-import { newuser,resetuser, newsub, username } from './components/user'
+import { newuser,resetuser, newsub, username} from './components/user'
 
 function Header() {
     const dispatch = useDispatch()
@@ -51,8 +51,8 @@ function Header() {
         <div className="Header">
             <Link to={'/'}><h1>StudiBetter</h1></Link>
             <div className="headerright">
-                {/* {name && 
-                <Link to={`/${name}`}><h2> Sets</h2></Link>} */}
+                {name && 
+                <Link to={`/${name}`}><h2> Sets</h2></Link>}
                 <Link to={'/demo'}><h2> Demo</h2></Link>
                 <div id="signInDiv"></div>
                 {name &&

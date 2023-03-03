@@ -17,7 +17,7 @@ function Demo() {
 
   async function handleCreateTopic(e: React.FormEvent) {
     e.preventDefault();
-    const topic = await createTopic(title);
+    const topic = await createTopic(title, username);
     setTopics([...topics, topic])
     setTitle("")
     setAddActive(false)
@@ -27,7 +27,7 @@ function Demo() {
 
   useEffect(() => {
     async function fetchTopics() {
-      const newTopics = await getTopics();
+      const newTopics = await getTopics(username);
       setTopics(newTopics);
     }
     fetchTopics();

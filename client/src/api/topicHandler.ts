@@ -2,10 +2,11 @@ import { API_URL } from "./config";
 
 export type TTopic = {
   title: string;
+  username: string;
   _id : string
 }
 // Create Topic
-export async function createTopic(title: string) {
+export async function createTopic(title: string, username: string) {
     const response = await fetch(`${API_URL}/topics`, {
       method: "POST",
       headers: {
@@ -13,14 +14,15 @@ export async function createTopic(title: string) {
       },
       body:JSON.stringify({
         title,
+        username
       })
     });
     return response.json()
 }
 
 // Get Topics
-export async function getTopics(): Promise<TTopic[]> {
-    const response = await fetch(`${API_URL}/topics`);
+export async function getTopics(username: string): Promise<TTopic[]> {
+    const response = await fetch(`${API_URL}/${username}/topics`);
     return response.json()
 }
 
