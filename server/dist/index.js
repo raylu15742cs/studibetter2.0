@@ -40,7 +40,7 @@ app.use((0, cors_1["default"])({
     origin: "*"
 }));
 app.use(express_1["default"].json());
-app.get("/topics", topicController_1.getTopics);
+app.get("/:username/topics", topicController_1.getTopics);
 app.post("/topics", topicController_1.createTopic);
 app["delete"]('/topics/:topicId', topicController_1.deleteTopic);
 app.put('/topics/:topicId/updateTopic', topicController_1.updateTopic);

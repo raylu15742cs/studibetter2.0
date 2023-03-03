@@ -99,7 +99,6 @@ function getQuiz(req, res) {
                     beginner = _a.sent();
                     count -= beginner.length;
                     card = card.concat(beginner);
-                    console.log(count);
                     return [4 /*yield*/, Card_1["default"].aggregate([{
                                 $match: { $and: [{ topic: topics._id }] }
                             }, { $sample: { size: count } }])];
