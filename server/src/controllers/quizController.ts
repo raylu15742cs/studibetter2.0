@@ -43,7 +43,6 @@ export async function getQuiz(req: Request, res: Response) {
    }, { $sample: { size: 4 }}])
    count -= beginner.length
    card = card.concat(beginner)
-   console.log(count)
    //Generates random at this point
    const remainder = await Card.aggregate([{
       $match: {$and: [{ topic: topics!._id }]}

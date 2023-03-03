@@ -22,7 +22,7 @@ app.use(
 )
 app.use(express.json())
 
-app.get("/topics", getTopics)
+app.get("/:username/topics", getTopics)
 app.post("/topics" , createTopic)
 app.delete('/topics/:topicId', deleteTopic)
 app.put('/topics/:topicId/updateTopic' , updateTopic)

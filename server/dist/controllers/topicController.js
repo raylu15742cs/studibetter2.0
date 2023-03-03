@@ -44,10 +44,12 @@ var Topic_1 = __importDefault(require("../models/Topic"));
 // Find all topics
 function getTopics(req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var topics;
+        var username, topics;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, Topic_1["default"].find()];
+                case 0:
+                    username = req.params.username;
+                    return [4 /*yield*/, Topic_1["default"].find({ username: username })];
                 case 1:
                     topics = _a.sent();
                     res.json(topics);
@@ -64,7 +66,8 @@ function createTopic(req, res) {
             switch (_a.label) {
                 case 0:
                     newTopic = new Topic_1["default"]({
-                        title: req.body.title
+                        title: req.body.title,
+                        username: req.body.username
                     });
                     return [4 /*yield*/, newTopic.save()];
                 case 1:

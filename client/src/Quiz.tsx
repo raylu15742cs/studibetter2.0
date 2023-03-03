@@ -72,7 +72,6 @@ export default function Quiz() {
     if (altcount == 10) {
       setQuizComplete(true)
       setBlurApp(false)
-      console.log(results)
     }
   }, [count]);
     return (
