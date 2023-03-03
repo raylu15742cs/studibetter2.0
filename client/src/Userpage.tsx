@@ -39,7 +39,7 @@ const Userpage = () => {
     <div className="App">
       <div className={blurApp ? "" : "blur"} >
       <Header />
-      <h1> Topics</h1>
+      <h1> {name}'s Topic</h1>
       {topics.length ? (
         <div className="topics">
         {topics.map((topic) => (
