@@ -83,7 +83,7 @@ const Userpage = () => {
 
           ) : <div className="cardform">
             <div className="closePopup" onClick={() => {setAddActive(false); setBlurApp(blurApp => !blurApp)}}>X</div>
-            <h2>Max Topics Reacted</h2> 
+            <h2>Max Topics Reached</h2> 
             </div>}
         </div>
       ): ""}

@@ -3,16 +3,20 @@ import { API_URL } from "./api/config"
 import { useEffect, useState } from "react"
 import jwtDecode from "jwt-decode"
 import { useSelector, useDispatch } from 'react-redux'
-import { newuser,resetuser, newsub, username} from './components/user'
+import { newuser,resetuser, newsub, username, usersub} from './components/user'
+import { useNavigate } from "react-router-dom"
 
 function Header() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const name = useSelector(username)
+    const sub = useSelector(usersub)
 
 
     function handleSignOut(event:any) {
         dispatch(resetuser())
         document.getElementById('signInDiv')!.hidden = false;
+        navigate('/')
     }
 
     async function handleCallbackResponse(response: any) {
@@ -20,6 +24,7 @@ function Header() {
         dispatch(newuser(userObject.name))
         dispatch(newsub(userObject.sub))
         document.getElementById('signInDiv')!.hidden = true;
+        navigate(`/${username}`)
     }
 
     useEffect(() => {
