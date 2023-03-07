@@ -11,7 +11,7 @@ const Intro = () => {
         <div>
             <h1>Welcome to StudiBetter</h1>
             <h2 className='levels'>Mission:</h2>
-            <p className='paragraphs'>StudiBetter is an application for students and learners that target their weakness. By using a targeted quiz system, users get specialized quizes that improve their performance and memorization.</p>
+            <p className='paragraphs'>StudiBetter is an application for students and learners that target their weakness. By using a targeted quiz system, users get specialized quizs that improve their performance and memorization.</p>
             <h2 className='levels'>Levels in StudiBetter</h2>
             <div className='levelsandimage'>
                 <div>
